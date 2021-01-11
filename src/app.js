@@ -5,6 +5,7 @@ import { Tile } from '../easyImage/Tile/Tile';
 import { SimpleSlides } from '../easyImage/Slideshow/SimpleSlides';
 import './app.css';
 import card from './imgs/cards/10H.png';
+import { AnimatedSlides } from '../easyImage/AnimatedSlides/AnimatedSlides';
 
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
     { img: require("./imgs/cards/2C.png"), cap: "2 of clubs" },
     { img: require("./imgs/cards/5H.png"), cap: "5 of hearts" },
     { img: require('./imgs/cards/3D.png'), cap: "3 of dimaonds" }
-  ]
+  ];
 
   const slideConfig = {
     containerWidth: "350px",
@@ -51,6 +52,23 @@ const App = () => {
   );
 
 
+  const aniSlidesConfig = {
+    containerWidth: "100%",
+    containerHeight: "1000px",
+    imgWidth: "960px",
+    imgHeight: "640px",
+    dotBgColor: "slategray",
+    dotHighlightColor: "slateblue"
+  }
+
+  const aniImages = [
+    { img: require('./imgs/aniSlides/image1.jpg'), cap: "", key: 0 },
+    { img: require('./imgs/aniSlides/image2.jpg'), cap: "", key: 1 },
+    { img: require('./imgs/aniSlides/image3.jpg'), cap: "", key: 2 },
+    { img: require('./imgs/aniSlides/image4.jpg'), cap: "", key: 3 },
+    { img: require('./imgs/aniSlides/image5.jpg'), cap: "", key: 4 }
+  ]
+
   return (
     <div style={{ transform: "rotate(0.02deg)" }}>
 
@@ -74,6 +92,10 @@ const App = () => {
 
         <SimpleSlides images={slideArr} userConfig={slideConfig} />
 
+      </div>
+
+      <div className="animated_slide_container">
+        <AnimatedSlides images={aniImages} userConfig={aniSlidesConfig} />
       </div>
     </div>
   )

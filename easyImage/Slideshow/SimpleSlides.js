@@ -48,10 +48,10 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
       width: ${applyConfig.containerWidth};
       height: ${applyConfig.containerHeight};
       &:hover{
-        .toggle_button_right{
+        .chevron-right{
           opacity: 1;
         }
-        .toggle_button_left{
+         .chevron-left{
           opacity: 1;
         }
       }
@@ -108,39 +108,47 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
       ))
       }
       {dots}
-      <button
+      <div
         css={css`
           position: absolute;
           right:2%;
           top: 50%;
           transform :translate(-2%, -50%);
           opacity: 0;
+          transition: 0.2s linear;
+          &:hover{
+            cursor:pointer;
+          }
         `}
-        className="toggle_button_right"
+        className="chevron-right"
         onClick={() =>
           setcurrentImage(
             (prevState) => prevState < images.length
               ? prevState + 1
               : prevState)}>
-        {">"}
-      </button>
 
-      <button
+      </div>
+
+      <div
         css={css`
           position: absolute;
           left:2%;
           top: 50%;
           transform :translate(-2%, -50%);
           opacity: 0;
+          transition: 0.2s linear;
+          &:hover{
+            cursor:pointer;
+          }
         `}
-        className="toggle_button_left"
+        className="chevron-left"
         onClick={() =>
           setcurrentImage(
             (prevState) => prevState > 1
               ? prevState - 1
               : prevState)}>
-        {"<"}
-      </button>
+
+      </div>
     </div >
   )
 }

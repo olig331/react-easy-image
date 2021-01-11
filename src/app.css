@@ -20,3 +20,13 @@
   width: 100%;
   background-color: rgb(219, 219, 219);
 }
+
+.animated_slide_container{
+  height: 1000px;
+  width: 100%;
+  background-color: rgba(220 , 220, 220, 1);
+  border: 1px solid green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
