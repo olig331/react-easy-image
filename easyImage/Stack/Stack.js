@@ -5,7 +5,16 @@ import { css, jsx } from '@emotion/react';
 
 export const Stack = ({ images, maxImgHeight, maxImgWidth, userConfig }) => {
 
-  const borderTest = userConfig.border
+  const applyConfig = {
+    width: userConfig.width,
+    height: userConfig.height,
+    dotHighlightColor: userConfig.dotHighlightColor ?? "violet",
+    dotBgColor: userConfig.dotBgColor ?? "#777",
+    shadowColor: userConfig.shadowColor ?? "rgba(100, 100, 100, 0.07)",
+    buttonColor: userConfig.buttonColor ?? "#333",
+    buttonType: userConfig.buttonType ?? 1,
+    border: userConfig.border ?? "none"
+  }
 
   console.log(userConfig);
 
@@ -22,10 +31,9 @@ export const Stack = ({ images, maxImgHeight, maxImgWidth, userConfig }) => {
       <span
         key={index}
         onClick={() => { setCertainNum(index + 1) }}
-        className={index + 1 === currentNum
-          ? "dot dot_highlighed"
-          : "dot"
-        }>
+        className="dot"
+        style={index + 1 === currentNum ? { backgroundColor: `${applyConfig.dotHighlightColor}` } : { backgroundColor: `${applyConfig.dotBgColor}` }}
+      >
       </span>
     );
   };
@@ -50,8 +58,8 @@ export const Stack = ({ images, maxImgHeight, maxImgWidth, userConfig }) => {
   return (
     <div className="container_div" css={css`
       box-sizing: border-box;
-      width: ${maxImgWidth};
-      height: ${maxImgHeight};
+      width: calc(${applyConfig.width} + 150px);
+      height: calc(${applyConfig.height} + 150px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -59,13 +67,17 @@ export const Stack = ({ images, maxImgHeight, maxImgWidth, userConfig }) => {
       margin: 0 auto;
       perspective: 100px;
       transform: rotate(0.02deg) translateY(20px);
-      border: ${borderTest};`
+      border: ${applyConfig.border};`
     }>
       {images.map((x, i) => (
         <img
           key={i}
           src={x.default}
           alt=""
+
+          css={css`
+            width:${applyConfig.width};
+            height:${applyConfig.height};`}
           className={i < currentNum
             ? `stack_img ${i}`
             : i % 2 ? `stack_img ${i} displayNoneLeft`
@@ -110,8 +122,16 @@ Stack.propTypes = {
   maxImgWidth: requiredPropsCheck,
   maxImgHeight: requiredPropsCheck,
   userConfig: PropTypes.shape({
-    border: PropTypes.string
-  })
+    border: PropTypes.string,
+    width: PropTypes.string.isRequired,
+    height: PropTypes.string.isRequired,
+    dotHighlightColor: PropTypes.string,
+    dotBgColor: PropTypes.string,
+    shadowColor: PropTypes.string,
+    buttonColor: PropTypes.string,
+    buttonType: PropTypes.number
+  }).isRequired
 }
+
 
 

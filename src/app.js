@@ -2,14 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Stack } from '../easyImage/Stack/Stack';
 import { Tile } from '../easyImage/Tile/Tile';
+import { SimpleSlides } from '../easyImage/Slideshow/SimpleSlides';
 import './app.css';
 import card from './imgs/cards/10H.png';
 
 
 const App = () => {
 
-  const myConfig = {
-    "border": "none"
+  const slideArr = [
+    { img: require("./imgs/cards/2C.png"), cap: "2 of clubs" },
+    { img: require("./imgs/cards/5H.png"), cap: "5 of hearts" },
+    { img: require('./imgs/cards/3D.png'), cap: "3 of dimaonds" }
+  ]
+
+  const slideConfig = {
+    containerWidth: "350px",
+    containerHeight: "500px",
+    imgWidth: "250px",
+    imgHeight: "400px",
+    shadowColor: "rgba(0,0,0,0.09)"
   }
 
   const tileConfig = {
@@ -19,6 +30,14 @@ const App = () => {
     maxShadowBlur: 120,
     traction: 17,
     scale: 1.1
+  }
+
+  const stackConfig = {
+    width: "250px",
+    height: "400px",
+    dotBgColor: "#888",
+    dotHighlightColor: "violet",
+    shadowColor: "rgba(100, 100, 100, 0.05)",
   }
 
   const importAll = (r) => {
@@ -31,9 +50,7 @@ const App = () => {
     require.context("./imgs/cards", true, /\.(png|jpe?g|svg)$/)
   );
 
-  console.log(images)
 
-  console.log(__dirname)
   return (
     <div style={{ transform: "rotate(0.02deg)" }}>
 
@@ -42,7 +59,7 @@ const App = () => {
           images={images}
           maxImgWidth="470px"
           maxImgHeight="600px"
-          userConfig={myConfig}
+          userConfig={stackConfig}
         />
       </div>
 
@@ -51,6 +68,11 @@ const App = () => {
         <Tile config={tileConfig}>
           <img src={card} />
         </Tile>
+
+      </div>
+      <div className="slide_container">
+
+        <SimpleSlides images={slideArr} userConfig={slideConfig} />
 
       </div>
     </div>

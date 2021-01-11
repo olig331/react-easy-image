@@ -31,9 +31,7 @@
       cursor: pointer;
     }
   }
-  .dot_highlighed{
-    background-color: violet;
-  }
+
   .image_toggle{
     z-index: 1000;
     background-color: transparent;
@@ -61,8 +59,6 @@
     transform: translate(-0%, -50%);
   }
   .stack_img{
-    width: 250px;
-    height: 400px;
     position: absolute;
     top: 50%;
     left: 50%;

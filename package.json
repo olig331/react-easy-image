@@ -17,6 +17,7 @@
     "@emotion/babel-plugin": "^11.1.2",
     "@emotion/react": "^11.1.4",
     "babel-loader": "^8.2.2",
+    "babel-plugin-root-import": "^6.6.0",
     "css-loader": "^5.0.1",
     "file-loader": "^6.2.0",
     "style-loader": "^2.0.0",

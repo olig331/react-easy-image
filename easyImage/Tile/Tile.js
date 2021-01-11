@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import PropTypes, { func } from 'prop-types';
+import PropTypes from 'prop-types';
 import { css, jsx } from '@emotion/react';
 import './tile.css'
 
@@ -14,7 +14,7 @@ export const Tile = ({ children, config }) => {
     scale: config.scale ?? 1.1
   }
 
-
+  // XCoord, YCoord, Scale 
   const [xys, set] = useState({
     x: 0,
     y: 0,
@@ -23,6 +23,7 @@ export const Tile = ({ children, config }) => {
 
   const requestRef = React.useRef();
 
+  // Calculate the amount of flex on perspective from xys 
   const calc = (x, y) => {
     let vals = [-(y - window.innerHeight / 2) / applyConfig.traction, (x - window.innerWidth / 2) / applyConfig.traction, applyConfig.scale];
     set({ x: vals[0], y: vals[1], s: vals[2] })
@@ -55,10 +56,12 @@ export const Tile = ({ children, config }) => {
         transform: rotate(0.02deg);
         transform: perspective(600px) rotate(0.02deg) rotateX(${xys.x}deg) rotateY(${xys.y}deg) scale(${xys.s}); 
         transition: 0.15s linear;
+
           img:nth-of-type(1){
             width: ${applyConfig.width};
             height: ${applyConfig.height};
           }
+
           &:hover{
             transition: 0.15s linear;
             filter: drop-shadow(0 1px 2px ${config.shadowColor}) 
@@ -71,7 +74,6 @@ export const Tile = ({ children, config }) => {
         `}>
       {children}
     </div>
-
   )
 }
 
