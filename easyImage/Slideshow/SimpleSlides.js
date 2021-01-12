@@ -18,6 +18,7 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
     arrowStyle: userConfig.arrowStyle ?? 1,
     dotHighlightColor: userConfig.dotHighlightColor ?? "violet",
     dotBgColor: userConfig.dotBgColor ?? "#888",
+    allowDots: userConfig.allowDots ?? true
   }
 
   const dots = [];
@@ -105,9 +106,9 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
           {/* 
           <h4 css={css`text-align:center; color: ${applyConfig.capColor}`}>{object.cap}</h4> */}
         </div>
-      ))
-      }
-      {dots}
+      ))}
+
+      { applyConfig.allowDots ? (<div css={css`display:inline-flex`}>{dots}</div>) : ""}
       <div
         css={css`
           position: absolute;
@@ -149,7 +150,7 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
               : prevState)}>
 
       </div>
-    </div >
+    </div>
   )
 }
 
@@ -167,5 +168,6 @@ SimpleSlides.propTypes = {
     capBgColor: PropTypes.string,
     dotHighlightColor: PropTypes.string,
     dotBgColor: PropTypes.string,
+    allowDots: PropTypes.bool
   }).isRequired
 }

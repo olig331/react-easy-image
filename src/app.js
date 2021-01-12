@@ -21,7 +21,8 @@ const App = () => {
     containerHeight: "500px",
     imgWidth: "250px",
     imgHeight: "400px",
-    shadowColor: "rgba(0,0,0,0.09)"
+    shadowColor: "rgba(0,0,0,0.09)",
+    allowDots: true
   }
 
   const tileConfig = {
@@ -39,6 +40,7 @@ const App = () => {
     dotBgColor: "#888",
     dotHighlightColor: "violet",
     shadowColor: "rgba(100, 100, 100, 0.05)",
+    allowDots: false
   }
 
   const importAll = (r) => {

@@ -35,5 +35,21 @@
 //}
 
 .imgs_container{
-  display: inline-flex;
+  display: grid;
+  position: relative;
+  grid-template-columns: 23% 50% 23%;
+  grid-column-gap: 2%;
 }
+
+
+// .animateLeftMid{
+
+// }
+
+// .animateLeftLeft{
+
+// }
+
+// .animateLeftRight{
+
+// }

@@ -13,7 +13,8 @@ export const Stack = ({ images, maxImgHeight, maxImgWidth, userConfig }) => {
     shadowColor: userConfig.shadowColor ?? "rgba(100, 100, 100, 0.07)",
     buttonColor: userConfig.buttonColor ?? "#333",
     buttonType: userConfig.buttonType ?? 1,
-    border: userConfig.border ?? "none"
+    border: userConfig.border ?? "none",
+    allowDots: userConfig.allowDots ?? true
   }
 
   console.log(userConfig);
@@ -85,8 +86,10 @@ export const Stack = ({ images, maxImgHeight, maxImgWidth, userConfig }) => {
           } />
       ))}
 
-      {dots}
-
+      { applyConfig.allowDots
+        ? { dots }
+        : ""
+      }
       {currentNum > 1
         ? (
           <button
@@ -129,7 +132,8 @@ Stack.propTypes = {
     dotBgColor: PropTypes.string,
     shadowColor: PropTypes.string,
     buttonColor: PropTypes.string,
-    buttonType: PropTypes.number
+    buttonType: PropTypes.number,
+    allowDots: PropTypes.bool
   }).isRequired
 }
 
