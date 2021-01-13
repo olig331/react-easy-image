@@ -5,43 +5,43 @@ import { css, jsx } from '@emotion/react';
 
 export const SimpleSlides = ({ images, userConfig, children }) => {
 
-  const applyConfig = {
-    containerWidth: userConfig.containerWidth,
-    containerHeight: userConfig.containerHeight,
-    imgWidth: userConfig.imgWidth,
-    maxImgHeight: userConfig.imgHeight,
-    maxShadowBlur: userConfig.maxShadowBlur ?? 64,
-    shadowColor: userConfig.shadowColor ?? "rgba(0,0,0, 0.5)",
-    capFontSize: userConfig.capFontSize ?? "14px",
-    capColor: userConfig.capColor ?? "whitesmoke",
-    capBgColor: userConfig.capBgColor ?? "rgba(0,0,0,0.87)",
-    arrowStyle: userConfig.arrowStyle ?? 1,
-    dotHighlightColor: userConfig.dotHighlightColor ?? "violet",
-    dotBgColor: userConfig.dotBgColor ?? "#888",
-    allowDots: userConfig.allowDots ?? true
-  }
+    const applyConfig = {
+        containerWidth: userConfig.containerWidth,
+        containerHeight: userConfig.containerHeight,
+        imgWidth: userConfig.imgWidth,
+        maxImgHeight: userConfig.imgHeight,
+        maxShadowBlur: userConfig.maxShadowBlur ?? 64,
+        shadowColor: userConfig.shadowColor ?? "rgba(0,0,0, 0.5)",
+        capFontSize: userConfig.capFontSize ?? "14px",
+        capColor: userConfig.capColor ?? "whitesmoke",
+        capBgColor: userConfig.capBgColor ?? "rgba(0,0,0,0.87)",
+        arrowStyle: userConfig.arrowStyle ?? 1,
+        dotHighlightColor: userConfig.dotHighlightColor ?? "violet",
+        dotBgColor: userConfig.dotBgColor ?? "#888",
+        allowDots: userConfig.allowDots ?? true
+    }
 
-  const dots = [];
+    const dots = [];
 
-  const [numOfImages, setnumOfImages] = useState(images.length);
-  const [currentImgage, setcurrentImage] = useState(Math.round(images.length / 2));
+    const [numOfImages, setnumOfImages] = useState(images.length);
+    const [currentImgage, setcurrentImage] = useState(Math.round(images.length / 2));
 
-  for (const [index, dot] of images.entries()) {
-    dots.push(
-      <span
-        key={index}
-        onClick={() => setcurrentImage(index + 1)}
-        className="dot"
-        style={index + 1 === currentImgage ? { backgroundColor: `${applyConfig.dotHighlightColor}` } : { backgroundColor: `${applyConfig.dotBgColor}` }}
-      >
-      </span>
-    );
-  };
+    for (const [index, dot] of images.entries()) {
+        dots.push(
+            <span
+                key={index}
+                onClick={() => setcurrentImage(index + 1)}
+                className="dot"
+                style={index + 1 === currentImgage ? { backgroundColor: `${applyConfig.dotHighlightColor}` } : { backgroundColor: `${applyConfig.dotBgColor}` }}
+            >
+            </span>
+        );
+    };
 
-  return (
-    <div
-      className="simple_slide_con"
-      css={css`
+    return (
+        <div
+            className="simple_slide_con"
+            css={css`
       position: relative;
       margin: 0 auto;
       display: flex;
@@ -57,11 +57,11 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
         }
       }
     `}>
-      {images.map((object, index) => (
-        <div key={index}
-          title={object.cap}
-          className="slide_img_con"
-          css={css`
+            {images.map((object, index) => (
+                <div key={index}
+                    title={object.cap}
+                    className="slide_img_con"
+                    css={css`
           transition: 0.25s linear;
           position: absolute;
           left: 50%;
@@ -92,25 +92,25 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
             opacity: 1;
           }
         `
-          }
-          style={index + 1 === currentImgage ? { display: "block" } : { display: "none" }}
-        >
-          <img
-            src={object.img.default}
-            css={css`
+                    }
+                    style={index + 1 === currentImgage ? { display: "block" } : { display: "none" }}
+                >
+                    <img
+                        src={object.img.default}
+                        css={css`
               transition: 0.25s linear;
               width:${applyConfig.imgWidth};
               height:${applyConfig.imgHeight};
               `}
-          />
-          {/* 
+                    />
+                    {/* 
           <h4 css={css`text-align:center; color: ${applyConfig.capColor}`}>{object.cap}</h4> */}
-        </div>
-      ))}
+                </div>
+            ))}
 
-      { applyConfig.allowDots ? (<div css={css`display:inline-flex`}>{dots}</div>) : ""}
-      <div
-        css={css`
+            { applyConfig.allowDots ? (<div css={css`display:inline-flex`}>{dots}</div>) : ""}
+            <div
+                css={css`
           position: absolute;
           right:2%;
           top: 50%;
@@ -121,17 +121,17 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
             cursor:pointer;
           }
         `}
-        className="chevron-right"
-        onClick={() =>
-          setcurrentImage(
-            (prevState) => prevState < images.length
-              ? prevState + 1
-              : prevState)}>
+                className="chevron-right"
+                onClick={() =>
+                    setcurrentImage(
+                        (prevState) => prevState < images.length
+                            ? prevState + 1
+                            : prevState)}>
 
-      </div>
+            </div>
 
-      <div
-        css={css`
+            <div
+                css={css`
           position: absolute;
           left:2%;
           top: 50%;
@@ -142,32 +142,32 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
             cursor:pointer;
           }
         `}
-        className="chevron-left"
-        onClick={() =>
-          setcurrentImage(
-            (prevState) => prevState > 1
-              ? prevState - 1
-              : prevState)}>
+                className="chevron-left"
+                onClick={() =>
+                    setcurrentImage(
+                        (prevState) => prevState > 1
+                            ? prevState - 1
+                            : prevState)}>
 
-      </div>
-    </div>
-  )
+            </div>
+        </div>
+    )
 }
 
 SimpleSlides.propTypes = {
-  userConfig: PropTypes.shape({
-    containerWidth: PropTypes.string.isRequired,
-    containerHeight: PropTypes.string.isRequired,
-    imgHeight: PropTypes.string.isRequired,
-    imgWidth: PropTypes.string.isRequired,
-    maxShadowBlur: PropTypes.number,
-    shadowColor: PropTypes.string,
-    capFontSize: PropTypes.string,
-    capColor: PropTypes.string,
-    arrowStyle: PropTypes.number,
-    capBgColor: PropTypes.string,
-    dotHighlightColor: PropTypes.string,
-    dotBgColor: PropTypes.string,
-    allowDots: PropTypes.bool
-  }).isRequired
+    userConfig: PropTypes.shape({
+        containerWidth: PropTypes.string.isRequired,
+        containerHeight: PropTypes.string.isRequired,
+        imgHeight: PropTypes.string.isRequired,
+        imgWidth: PropTypes.string.isRequired,
+        maxShadowBlur: PropTypes.number,
+        shadowColor: PropTypes.string,
+        capFontSize: PropTypes.string,
+        capColor: PropTypes.string,
+        arrowStyle: PropTypes.number,
+        capBgColor: PropTypes.string,
+        dotHighlightColor: PropTypes.string,
+        dotBgColor: PropTypes.string,
+        allowDots: PropTypes.bool
+    }).isRequired
 }

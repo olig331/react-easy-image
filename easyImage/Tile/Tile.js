@@ -5,42 +5,42 @@ import './tile.css'
 
 export const Tile = ({ children, config }) => {
 
-  let applyConfig = {
-    traction: config.traction ?? 17,
-    shadowColor: config.shadowColor ?? "rgba(0,0,0,0.07)",
-    maxShadowBlur: config.maxShadowBlur ?? 64,
-    width: config.width,
-    height: config.height,
-    scale: config.scale ?? 1.1
-  }
+    let applyConfig = {
+        traction: config.traction ?? 17,
+        shadowColor: config.shadowColor ?? "rgba(0,0,0,0.07)",
+        maxShadowBlur: config.maxShadowBlur ?? 64,
+        width: config.width,
+        height: config.height,
+        scale: config.scale ?? 1.1
+    }
 
-  // XCoord, YCoord, Scale 
-  const [xys, set] = useState({
-    x: 0,
-    y: 0,
-    s: 1
-  })
+    // XCoord, YCoord, Scale 
+    const [xys, set] = useState({
+        x: 0,
+        y: 0,
+        s: 1
+    })
 
-  const requestRef = React.useRef();
+    const requestRef = React.useRef();
 
-  // Calculate the amount of flex on perspective from xys 
-  const calc = (x, y) => {
-    let vals = [-(y - window.innerHeight / 2) / applyConfig.traction, (x - window.innerWidth / 2) / applyConfig.traction, applyConfig.scale];
-    set({ x: vals[0], y: vals[1], s: vals[2] })
-  }
+    // Calculate the amount of flex on perspective from xys 
+    const calc = (x, y) => {
+        let vals = [-(y - window.innerHeight / 2) / applyConfig.traction, (x - window.innerWidth / 2) / applyConfig.traction, applyConfig.scale];
+        set({ x: vals[0], y: vals[1], s: vals[2] })
+    }
 
-  React.useEffect(() => {
-    requestRef.current = requestAnimationFrame(calc);
-    return () => cancelAnimationFrame(requestRef.current);
-  }, [])
+    React.useEffect(() => {
+        requestRef.current = requestAnimationFrame(calc);
+        return () => cancelAnimationFrame(requestRef.current);
+    }, [])
 
 
-  return (
-    <div
-      className="tile_img_other"
-      onMouseMove={({ clientX: x, clientY: y }) => (calc(x, y))}
-      onMouseLeave={() => set({ x: 0, y: 0, s: 1 })}
-      css={css`
+    return (
+        <div
+            className="tile_img_other"
+            onMouseMove={({ clientX: x, clientY: y }) => (calc(x, y))}
+            onMouseLeave={() => set({ x: 0, y: 0, s: 1 })}
+            css={css`
         max-height: ${applyConfig.height};
         max-width: ${applyConfig.width};
         filter: drop-shadow(0 1px 2px ${config.shadowColor}) 
@@ -72,18 +72,18 @@ export const Tile = ({ children, config }) => {
                 drop-shadow(0 32px ${applyConfig.maxShadowBlur}px ${applyConfig.shadowColor});
           }  
         `}>
-      {children}
-    </div>
-  )
+            {children}
+        </div>
+    )
 }
 
 Tile.propTypes = {
-  config: PropTypes.shape({
-    shadowColor: PropTypes.string,
-    maxShadowBlur: PropTypes.number,
-    traction: PropTypes.number,
-    width: PropTypes.string.isRequired,
-    height: PropTypes.string.isRequired,
-    scale: PropTypes.number
-  }).isRequired
+    config: PropTypes.shape({
+        shadowColor: PropTypes.string,
+        maxShadowBlur: PropTypes.number,
+        traction: PropTypes.number,
+        width: PropTypes.string.isRequired,
+        height: PropTypes.string.isRequired,
+        scale: PropTypes.number
+    }).isRequired
 }

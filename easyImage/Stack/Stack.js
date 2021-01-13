@@ -5,59 +5,59 @@ import { css, jsx } from '@emotion/react';
 
 export const Stack = ({ images, maxImgHeight, maxImgWidth, userConfig }) => {
 
-  const applyConfig = {
-    width: userConfig.width,
-    height: userConfig.height,
-    dotHighlightColor: userConfig.dotHighlightColor ?? "violet",
-    dotBgColor: userConfig.dotBgColor ?? "#777",
-    shadowColor: userConfig.shadowColor ?? "rgba(100, 100, 100, 0.07)",
-    buttonColor: userConfig.buttonColor ?? "#333",
-    buttonType: userConfig.buttonType ?? 1,
-    border: userConfig.border ?? "none",
-    allowDots: userConfig.allowDots ?? true
-  }
+    const applyConfig = {
+        width: userConfig.width,
+        height: userConfig.height,
+        dotHighlightColor: userConfig.dotHighlightColor ?? "violet",
+        dotBgColor: userConfig.dotBgColor ?? "#777",
+        shadowColor: userConfig.shadowColor ?? "rgba(100, 100, 100, 0.07)",
+        buttonColor: userConfig.buttonColor ?? "#333",
+        buttonType: userConfig.buttonType ?? 1,
+        border: userConfig.border ?? "none",
+        allowDots: userConfig.allowDots ?? true
+    }
 
-  console.log(userConfig);
-
-
-  const [currentNum, setCurrentNum] = useState(images.length)
-
-  // A Circle representing the number of images
-  //the current image dot will be highlighed
-  const dots = [];
-
-  // Create Span elements for the dots 
-  for (const [index, dot] of images.entries()) {
-    dots.push(
-      <span
-        key={index}
-        onClick={() => { setCertainNum(index + 1) }}
-        className="dot"
-        style={index + 1 === currentNum ? { backgroundColor: `${applyConfig.dotHighlightColor}` } : { backgroundColor: `${applyConfig.dotBgColor}` }}
-      >
-      </span>
-    );
-  };
+    console.log(userConfig);
 
 
-  const setCertainNum = (index) => {
-    setCurrentNum(index)
-  };
+    const [currentNum, setCurrentNum] = useState(images.length)
 
-  useEffect(() => {
-    console.log(currentNum)
-  }, [currentNum])
+    // A Circle representing the number of images
+    //the current image dot will be highlighed
+    const dots = [];
 
-  const decrementCount = () => {
-    setCurrentNum(currentNum - 1)
-  };
+    // Create Span elements for the dots 
+    for (const [index, dot] of images.entries()) {
+        dots.push(
+            <span
+                key={index}
+                onClick={() => { setCertainNum(index + 1) }}
+                className="dot"
+                style={index + 1 === currentNum ? { backgroundColor: `${applyConfig.dotHighlightColor}` } : { backgroundColor: `${applyConfig.dotBgColor}` }}
+            >
+            </span>
+        );
+    };
 
-  const incrementCount = () => {
-    setCurrentNum(currentNum + 1)
-  };
 
-  return (
-    <div className="container_div" css={css`
+    const setCertainNum = (index) => {
+        setCurrentNum(index)
+    };
+
+    useEffect(() => {
+        console.log(currentNum)
+    }, [currentNum])
+
+    const decrementCount = () => {
+        setCurrentNum(currentNum - 1)
+    };
+
+    const incrementCount = () => {
+        setCurrentNum(currentNum + 1)
+    };
+
+    return (
+        <div className="container_div" css={css`
       box-sizing: border-box;
       width: calc(${applyConfig.width} + 150px);
       height: calc(${applyConfig.height} + 150px);
@@ -69,72 +69,72 @@ export const Stack = ({ images, maxImgHeight, maxImgWidth, userConfig }) => {
       perspective: 100px;
       transform: rotate(0.02deg) translateY(20px);
       border: ${applyConfig.border};`
-    }>
-      {images.map((x, i) => (
-        <img
-          key={i}
-          src={x.default}
-          alt=""
+        }>
+            {images.map((x, i) => (
+                <img
+                    key={i}
+                    src={x.default}
+                    alt=""
 
-          css={css`
+                    css={css`
             width:${applyConfig.width};
             height:${applyConfig.height};`}
-          className={i < currentNum
-            ? `stack_img ${i}`
-            : i % 2 ? `stack_img ${i} displayNoneLeft`
-              : `stack_img ${i} displayNoneRight`
-          } />
-      ))}
+                    className={i < currentNum
+                        ? `stack_img ${i}`
+                        : i % 2 ? `stack_img ${i} displayNoneLeft`
+                            : `stack_img ${i} displayNoneRight`
+                    } />
+            ))}
 
-      { applyConfig.allowDots
-        ? { dots }
-        : ""
-      }
-      {currentNum > 1
-        ? (
-          <button
-            onClick={decrementCount}
-            className="image_toggle left">
-            {" < "}
-          </button>)
-        : ""
-      }
+            { applyConfig.allowDots
+                ? { dots }
+                : ""
+            }
+            {currentNum > 1
+                ? (
+                    <button
+                        onClick={decrementCount}
+                        className="image_toggle left">
+                        {" < "}
+                    </button>)
+                : ""
+            }
 
-      {currentNum < images.length
-        ? (
-          <button
-            onClick={incrementCount}
-            className="image_toggle right" >
-            {">"}
-          </button>)
-        : ""
-      }
-    </div >
-  )
+            {currentNum < images.length
+                ? (
+                    <button
+                        onClick={incrementCount}
+                        className="image_toggle right" >
+                        {">"}
+                    </button>)
+                : ""
+            }
+        </div >
+    )
 }
 
 const requiredPropsCheck = (props, propName, componentName) => {
-  if (!props.maxImgHeight || !props.maxImgWidth) {
-    return new Error(
-      `Both maxImgHeight and maxImgWidth props in the ${componentName} component must be assigned a relavent CSS Value (px, em, rem, % etc...) please apply the value as a string EG maxImgWidth="200px"`);
-  };
+    if (!props.maxImgHeight || !props.maxImgWidth) {
+        return new Error(
+            `Both maxImgHeight and maxImgWidth props in the ${componentName} component must be assigned a relavent CSS Value (px, em, rem, % etc...) please apply the value as a string EG maxImgWidth="200px"`);
+    };
 };
 
 
 Stack.propTypes = {
-  maxImgWidth: requiredPropsCheck,
-  maxImgHeight: requiredPropsCheck,
-  userConfig: PropTypes.shape({
-    border: PropTypes.string,
-    width: PropTypes.string.isRequired,
-    height: PropTypes.string.isRequired,
-    dotHighlightColor: PropTypes.string,
-    dotBgColor: PropTypes.string,
-    shadowColor: PropTypes.string,
-    buttonColor: PropTypes.string,
-    buttonType: PropTypes.number,
-    allowDots: PropTypes.bool
-  }).isRequired
+    maxImgWidth: requiredPropsCheck,
+    maxImgHeight: requiredPropsCheck,
+    userConfig: PropTypes.shape({
+        border: PropTypes.string,
+        width: PropTypes.string.isRequired,
+        height: PropTypes.string.isRequired,
+        dotHighlightColor: PropTypes.string,
+        dotBgColor: PropTypes.string,
+        shadowColor: PropTypes.string,
+        buttonColor: PropTypes.string,
+        buttonType: PropTypes.number,
+        allowDots: PropTypes.bool
+    }).isRequired
 }
 
 
