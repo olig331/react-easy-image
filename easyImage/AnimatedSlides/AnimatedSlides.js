@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './animatedSlides.css';
-import PropTypes, { number } from 'prop-types';
+import PropTypes from 'prop-types';
 import { css, jsx, keyframes } from '@emotion/react';
 import useWindowDimensions from "./windowDimensionsHook.js";
-
-
+import './animatedSlides.css';
+import '../chevrons.css';
 
 export const AnimatedSlides = ({ images, userConfig, children }) => {
 
@@ -245,7 +244,22 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
          </div>
          <button onClick={() => { caroselLogic.left_button_press(); setiteration(prev => prev === 2 ? 0 : prev + 1) }}>Rotate Left</button>
          <button onClick={() => { caroselLogic.right_button_press(); setiteration(prev => prev === 0 ? 2 : prev - 1) }}>Rotate Right</button>
-         <button onClick={() => console.log(currentNumber)}>Current NUm</button>
       </div>
    )
+}
+
+
+AnimatedSlides.propTypes = {
+   userConfig: PropTypes.shape({
+      containerWidth: PropTypes.string,
+      containerHeight: PropTypes.string,
+      imgWidth: PropTypes.string,
+      imgHeight: PropTypes.string,
+      dotHighlightColor: PropTypes.string,
+      dotBgColor: PropTypes.string,
+      maxShadowBlur: PropTypes.number,
+      shadowColor: PropTypes.string,
+      shadows: PropTypes.bool,
+      rotateTime: PropTypes.number
+   })
 }

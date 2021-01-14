@@ -36,8 +36,10 @@ const App = () => {
    }
 
    const stackConfig = {
-      width: "250px",
-      height: "400px",
+      imgWidth: "250px",
+      imgHeight: "400px",
+      containerWidth: "470px",
+      containerHeight: "600px",
       dotBgColor: "#888",
       dotHighlightColor: "violet",
       shadowColor: "rgba(100, 100, 100, 0.05)",
@@ -78,8 +80,6 @@ const App = () => {
          <div className="app">
             <Stack
                images={images}
-               maxImgWidth="470px"
-               maxImgHeight="600px"
                userConfig={stackConfig}
             />
          </div>
