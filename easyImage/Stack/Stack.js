@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes, { func } from 'prop-types';
-import { css, jsx } from '@emotion/react';
+import { css } from '@emotion/react';
 import './style.css';
 import '../chevrons.css';
 
@@ -19,12 +19,14 @@ export const Stack = ({ images, userConfig }) => {
       buttonType: userConfig.buttonType ?? 1,
       border: userConfig.border ?? "none",
       allowDots: userConfig.allowDots ?? true,
-
+      chevronStyle: userConfig.chevronStyle ?? 1,
+      chevronScale: userConfig.chevronScale ?? 1,
+      chevronHoverColor: userConfig.chevronHoverColor ?? "black",
+      chevronColor: userConfig.chevronColor ?? "black",
+      allowChevrons: userConfig.allowChevrons ?? false
    }
 
-   console.log(userConfig);
-
-
+   // Index of the image on top relative to the array of images
    const [currentNum, setCurrentNum] = useState(images.length)
 
    // A Circle representing the number of images
@@ -36,7 +38,7 @@ export const Stack = ({ images, userConfig }) => {
       dots.push(
          <span
             key={index}
-            onClick={() => { setCertainNum(index + 1) }}
+            onClick={() => { setCurrentNum(index) }}
             className="dot"
             style={index + 1 === currentNum ? { backgroundColor: `${applyConfig.dotHighlightColor}` } : { backgroundColor: `${applyConfig.dotBgColor}` }}
          >
@@ -44,29 +46,11 @@ export const Stack = ({ images, userConfig }) => {
       );
    };
 
-
-   const setCertainNum = (index) => {
-      setCurrentNum(index)
-   };
-
-   useEffect(() => {
-      console.log(currentNum)
-   }, [currentNum])
-
-   const decrementCount = () => {
-      setCurrentNum(currentNum - 1)
-   };
-
-   const incrementCount = () => {
-      setCurrentNum(currentNum + 1)
-   };
-
    return (
       <div
          className="container_div"
          css={css`
             box-sizing: border-box;
-            border: 2px solid red;
             width: calc(${applyConfig.containerWidth});
             height: calc(${applyConfig.containerHeight});
             display: flex;
@@ -83,10 +67,20 @@ export const Stack = ({ images, userConfig }) => {
             <img
                key={i}
                src={x.default}
-               alt=""
+               onClick={() => currentNum > 0 ? setCurrentNum(prev => prev - 1) : setCurrentNum(images.length - 1)}
                css={css`
                   width: ${applyConfig.imgWidth};
-   height: ${applyConfig.imgHeight}; `}
+                  height: ${applyConfig.imgHeight}; 
+                  postition:absolute;
+                  left:50%;
+                  top:50%;
+                  transform: translate(-50%, -50%) scale(0);
+                  &:hover{
+                     transition: 0.2s linear;
+                     cursor:pointer;
+                     transform: translate(-50%, -50%) scale(1.15);
+                  }
+               `}
                className={i < currentNum
                   ? `stack_img ${i} `
                   : i % 2
@@ -99,23 +93,57 @@ export const Stack = ({ images, userConfig }) => {
             ? { dots }
             : ""
          }
-         {currentNum > 1
+         {currentNum > 1 && applyConfig.allowChevrons
             ? (
-               <button
-                  onClick={decrementCount}
-                  className="image_toggle left">
-                  {" < "}
-               </button>)
+               <div
+                  className={`chevron-left${applyConfig.chevronStyle}`}
+                  onClick={() => setCurrentNum(prev => prev - 1)}
+                  css={css`
+                     position: absolute;
+                     left: 0;
+                     top: 50%;
+                     transform: translate(0%, -50%) scale(${applyConfig.chevronScale});
+                     opacity: 1;
+                     background-color: transparent;
+                     transition: 0.2s linear;
+                     color: ${applyConfig.chevronColor};
+                     &:hover{
+                        color: ${applyConfig.chevronHoverColor}
+                        transition: 0.15s linear;
+                        margin-left: -5px;
+                        cursor:pointer;
+                     }
+                  `}
+               >
+               </div>
+            )
             : ""
          }
 
-         {currentNum < images.length
+         {currentNum < images.length && applyConfig.allowChevrons
             ? (
-               <button
-                  onClick={incrementCount}
-                  className="image_toggle right" >
-                  {">"}
-               </button>)
+               <div
+                  onClick={() => setCurrentNum(prev => prev + 1)}
+                  className={`chevron-right${applyConfig.chevronStyle}`}
+                  css={css`
+                     position: absolute;
+                     right: 0;
+                     top: 50%;
+                     background-color: transparent;
+                     transform: translate(-0%, -50%) scale(${applyConfig.chevronScale});
+                     opacity: 1;
+                     transition: 0.2s linear;
+                     color: ${applyConfig.chevronColor};
+                     &:hover{
+                        color: ${applyConfig.chevronHoverColor}
+                        transition: 0.15s linear;
+                        margin-right: 5px;
+                        cursor:pointer;
+                     }
+                  `}
+               >
+               </div>
+            )
             : ""
          }
       </div >
@@ -142,7 +170,12 @@ Stack.propTypes = {
       shadowColor: PropTypes.string,
       buttonColor: PropTypes.string,
       buttonType: PropTypes.number,
-      allowDots: PropTypes.bool
+      allowDots: PropTypes.bool,
+      chevronColor: PropTypes.string,
+      chevronHoverColor: PropTypes.string,
+      chevronScale: PropTypes.number,
+      chevronStyle: PropTypes.number,
+      allowChevrons: PropTypes.bool
    }).isRequired
 }
 

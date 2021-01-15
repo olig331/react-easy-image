@@ -23,7 +23,9 @@ const App = () => {
       imgWidth: "250px",
       imgHeight: "400px",
       shadowColor: "rgba(0,0,0,0.09)",
-      allowDots: true
+      allowDots: true,
+      chevronStyle: 6,
+      chevronScale: 1.6
    }
 
    const tileConfig = {
@@ -43,7 +45,8 @@ const App = () => {
       dotBgColor: "#888",
       dotHighlightColor: "violet",
       shadowColor: "rgba(100, 100, 100, 0.05)",
-      allowDots: false
+      allowDots: false,
+      allowChevrons: false
    }
 
    const importAll = (r) => {

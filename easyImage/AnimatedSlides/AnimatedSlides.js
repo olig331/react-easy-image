@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { css, jsx, keyframes } from '@emotion/react';
+import { css } from '@emotion/react';
 import useWindowDimensions from "./windowDimensionsHook.js";
 import './animatedSlides.css';
 import '../chevrons.css';
@@ -26,38 +26,34 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
       rotateTime: userConfig.rotateTime ?? 350
    };
 
-   useEffect(() => {
-      console.log("this is indexes arr", indexes)
-   }, [indexes])
-
-
-
-
    // React State 
    const [indexes, setindexes] = useState([2, 3, 4]);
    const [currentNumber, setcurrentNumber] = useState(() => Math.round(images.length / 2))
    const [iteration, setiteration] = useState(0);
-   const [animateRight, setanimateRight] = useState(0);
-   const [animateLeft, setanimateLeft] = useState(0);
    const [mainImgDimensions, setmainImgDimension] = useState(0);
+   const [calculatedContainerHeight, setcalculatedContainerHeight] = useState(0);
 
+   // Perform once on first render for img scaling 
    useEffect(() => {
       let mainImgWidth = Math.round((width / 100) * 44).toString() + "px";
       setmainImgDimension(mainImgWidth)
+      let height = width > 1000 ? (((width / 100) * 22) + 350).toString() + "px" : ((width / 100) * 55).toString() + "px"
+      setcalculatedContainerHeight(height)
    }, []);
 
+
+   // Perfrorm everytime the width of window changes providing 
+   // Accurate dimensions for the smaller images
    useEffect(() => {
       let mainImgWidth = Math.round((width / 100) * 44).toString() + "px";
-      setmainImgDimension(mainImgWidth)
+      setmainImgDimension(mainImgWidth);
+      let height = width > 1000 ? (((width / 100) * 22) + 350).toString() + "px" : ((width / 100) * 55).toString() + "px"
+      setcalculatedContainerHeight(height)
    }, [width])
 
 
-   useEffect(() => {
-      console.log("running use effect for dfimensiosn")
-      console.log(mainImgDimensions);
-   }, [mainImgDimensions])
 
-   // Styling for the Left side image
+   // Left Hand Image stlying class
    const leftSide = {
       transition: `${applyConfig.rotateTime}ms ease-in-out`,
       position: "absolute",
@@ -72,7 +68,7 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
       display: "block"
    }
 
-   // Styling for the middle image
+   // Middle image styling class
    const middle = {
       transition: `${applyConfig.rotateTime}ms ease-in-out`,
       position: "absolute",
@@ -86,7 +82,7 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
       zIndex: "25",
    }
 
-   // Syling for the right side image
+   // Right side image styling class
    const rightSide = {
       transition: `${applyConfig.rotateTime}ms ease-in-out`,
       position: "absolute",
@@ -102,18 +98,41 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
 
    // Emmpty Array tp push dot span elements to;
    const dots = [];
+
+   // Clicking on representive image dots will change the images 
+   const calculateNewIndexes = (index) => {
+      let arr = new Array(3);
+      console.log(arr);
+      arr[0] = index == 0 ? images.length - 1 : index - 1;
+      arr[1] = index;
+      arr[2] = index == images.length - 1 ? 0 : index + 1;
+      console.log(arr)
+      return arr;
+   }
+
    // Create Span elements for the dots cal
    for (const [index, dot] of images.entries()) {
       dots.push(
          <span
             key={index}
-            onClick={() => { setcurrentNumber(index) }}
+            onClick={() => { setcurrentNumber(index); setindexes(calculateNewIndexes(index)) }}
             className="dot"
             style={index === currentNumber ? { backgroundColor: `${applyConfig.dotHighlightColor}` } : { backgroundColor: `${applyConfig.dotBgColor}` }}>
          </span>
       );
    };
 
+   const rotateBack = () => {
+      caroselLogic.left_button_press();
+      setiteration(prev => prev === 2 ? 0 : prev + 1);
+      setcurrentNumber(prev => prev === 0 ? images.length - 1 : prev - 1)
+   }
+
+   const rotateForward = () => {
+      caroselLogic.right_button_press();
+      setiteration(prev => prev === 0 ? 2 : prev - 1);
+      setcurrentNumber(prev => prev === images.length - 1 ? 0 : prev + 1)
+   }
 
    const caroselLogic = {
 
@@ -124,33 +143,28 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
 
       right_button_press: function () {
          let arr = [...indexes];
-         console.log("right before", arr, iteration)
          let numToPush = arr[0];
          numToPush = this.offset_index(arr[arr.length - 1], 1)
          arr.shift();
          arr.push(numToPush)
-         console.log("right after", arr, iteration)
          setindexes(arr);
       },
 
       left_button_press: function () {
          let arr = [...indexes];
-         console.log("left before", arr, iteration)
          let numtoShift = arr[2];
          numtoShift = this.offset_index(arr[0], -1);
          arr.pop()
          arr.unshift(numtoShift)
-         console.log("left after", arr, iteration)
          setindexes(arr)
       }
-   }
-
+   };
 
    return (
       <div css={css`width: 100%; height: ${applyConfig.containerHeight};`}>
          <div
             className="imgs_container"
-            style={{ height: `${applyConfig.containerHeight}` }}>
+            style={{ height: `${calculatedContainerHeight}` }}>
 
             {/* Left Side Img */}
             <img
@@ -161,7 +175,7 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
                         ? images[indexes[1]].img.default
                         : images[indexes[2]].img.default
                }
-
+               className={iteration !== 1 ? "hoverImg" : ""}
                css={css`filter: drop-shadow(0 1px 2px ${applyConfig.shadowColor}) 
                            drop-shadow(0 2px ${applyConfig.maxShadowBlur / 16}px ${applyConfig.shadowColor}) 
                            drop-shadow(0 4px ${applyConfig.maxShadowBlur / 8}px ${applyConfig.shadowColor})
@@ -176,6 +190,13 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
                         : iteration == 2
                            ? rightSide
                            : { color: "white" }}
+               onClick={() => {
+                  iteration === 0
+                     ? rotateBack()
+                     : iteration === 2
+                        ? rotateForward()
+                        : null
+               }}
             />
 
             {/* Middle Image */}
@@ -187,8 +208,7 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
                         ? images[indexes[2]].img.default
                         : images[indexes[0]].img.default
                }
-               onClick={() => setanimateRight(1)}
-               ani={animateRight}
+               className={iteration !== 0 ? "hoverImg" : ""}
                css={css`filter: drop-shadow(0 1px 2px ${applyConfig.shadowColor}) 
                            drop-shadow(0 2px ${applyConfig.maxShadowBlur / 16}px ${applyConfig.shadowColor}) 
                            drop-shadow(0 4px ${applyConfig.maxShadowBlur / 8}px ${applyConfig.shadowColor})
@@ -203,6 +223,13 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
                         : iteration == 2
                            ? leftSide
                            : { color: "white" }}
+               onClick={() => {
+                  iteration === 1
+                     ? rotateForward()
+                     : iteration === 2
+                        ? rotateBack()
+                        : null
+               }}
             />
 
             {/* Right Side Imgage */}
@@ -214,7 +241,7 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
                         ? images[indexes[0]].img.default
                         : images[indexes[1]].img.default
                }
-
+               className={iteration !== 2 ? "hoverImg" : ""}
                css={css`filter: drop-shadow(0 1px 2px ${applyConfig.shadowColor}) 
                            drop-shadow(0 2px ${applyConfig.maxShadowBlur / 16}px ${applyConfig.shadowColor}) 
                            drop-shadow(0 4px ${applyConfig.maxShadowBlur / 8}px ${applyConfig.shadowColor})
@@ -229,25 +256,29 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
                         : iteration == 2
                            ? middle
                            : { color: "white" }}
+               onClick={() => {
+                  iteration === 0
+                     ? rotateForward()
+                     : iteration === 1
+                        ? rotateBack()
+                        : null
+               }}
             />
 
-            {/* <div
+            <div
                css={css`
                   position:absolute;
-                  top: 90%;
+                  top: 99%;
                   left: 50%;
-                  transform: translate(-50%, -90%);
+                  transform: translate(-50%, -99%);
                   `}>
                {dots}
-            </div> */}
+            </div>
 
          </div>
-         <button onClick={() => { caroselLogic.left_button_press(); setiteration(prev => prev === 2 ? 0 : prev + 1) }}>Rotate Left</button>
-         <button onClick={() => { caroselLogic.right_button_press(); setiteration(prev => prev === 0 ? 2 : prev - 1) }}>Rotate Right</button>
       </div>
    )
 }
-
 
 AnimatedSlides.propTypes = {
    userConfig: PropTypes.shape({
