@@ -36,22 +36,19 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
    // Perform once on first render for img scaling 
    useEffect(() => {
       let mainImgWidth = Math.round((width / 100) * 44).toString() + "px";
-      setmainImgDimension(mainImgWidth)
       let height = width > 1000 ? (((width / 100) * 22) + 350).toString() + "px" : ((width / 100) * 55).toString() + "px"
-      setcalculatedContainerHeight(height)
+      setmainImgDimension(mainImgWidth);
+      setcalculatedContainerHeight(height);
    }, []);
-
 
    // Perfrorm everytime the width of window changes providing 
    // Accurate dimensions for the smaller images
    useEffect(() => {
       let mainImgWidth = Math.round((width / 100) * 44).toString() + "px";
-      setmainImgDimension(mainImgWidth);
       let height = width > 1000 ? (((width / 100) * 22) + 350).toString() + "px" : ((width / 100) * 55).toString() + "px"
-      setcalculatedContainerHeight(height)
+      setmainImgDimension(mainImgWidth);
+      setcalculatedContainerHeight(height);
    }, [width])
-
-
 
    // Left Hand Image stlying class
    const leftSide = {
@@ -96,19 +93,17 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
       zIndex: "1",
    }
 
-   // Emmpty Array tp push dot span elements to;
-   const dots = [];
-
    // Clicking on representive image dots will change the images 
    const calculateNewIndexes = (index) => {
       let arr = new Array(3);
-      console.log(arr);
       arr[0] = index == 0 ? images.length - 1 : index - 1;
       arr[1] = index;
       arr[2] = index == images.length - 1 ? 0 : index + 1;
-      console.log(arr)
       return arr;
    }
+
+   // Emmpty Array tp push dot span elements to;
+   const dots = [];
 
    // Create Span elements for the dots cal
    for (const [index, dot] of images.entries()) {
@@ -117,7 +112,10 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
             key={index}
             onClick={() => { setcurrentNumber(index); setindexes(calculateNewIndexes(index)) }}
             className="dot"
-            style={index === currentNumber ? { backgroundColor: `${applyConfig.dotHighlightColor}` } : { backgroundColor: `${applyConfig.dotBgColor}` }}>
+            style={index === currentNumber
+               ? { backgroundColor: `${applyConfig.dotHighlightColor}` }
+               : { backgroundColor: `${applyConfig.dotBgColor}` }
+            }>
          </span>
       );
    };

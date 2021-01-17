@@ -23,7 +23,6 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
       dotHighlightColor: userConfig.dotHighlightColor ?? "violet",
       dotBgColor: userConfig.dotBgColor ?? "#888",
       allowDots: userConfig.allowDots ?? true,
-
    }
 
    const dots = [];
@@ -37,8 +36,10 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
             key={index}
             onClick={() => setcurrentImage(index + 1)}
             className="dot"
-            style={index + 1 === currentImgage ? { backgroundColor: `${applyConfig.dotHighlightColor}` } : { backgroundColor: `${applyConfig.dotBgColor}` }}
-         >
+            style={index + 1 === currentImgage
+               ? { backgroundColor: `${applyConfig.dotHighlightColor}` }
+               : { backgroundColor: `${applyConfig.dotBgColor}` }
+            }>
          </span>
       );
    };

@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Stack } from '../easyImage/Stack/Stack';
-import { Tile } from '../easyImage/Tile/Tile';
-import { SimpleSlides } from '../easyImage/Slideshow/SimpleSlides';
-import card from './imgs/cards/10H.png';
-import { AnimatedSlides } from '../easyImage/AnimatedSlides/AnimatedSlides';
+// import { Stack } from '../easyImage/Stack/Stack';
+// import { Tile } from '../easyImage/Tile/Tile';
+// import { SimpleSlides } from '../easyImage/Slideshow/SimpleSlides';
+// import { AnimatedSlides } from '../easyImage/AnimatedSlides/AnimatedSlides';
+import { Stack, Tile, SimpleSlides, AnimatedSlides } from 'react-easy-img';
 import './app.css';
+import card from './imgs/cards/10H.png';
 
 
 const App = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes, { func } from 'prop-types';
 import { css } from '@emotion/react';
-import './style.css';
+import './stack.css';
 import '../chevrons.css';
 
 
@@ -40,8 +40,10 @@ export const Stack = ({ images, userConfig }) => {
             key={index}
             onClick={() => { setCurrentNum(index) }}
             className="dot"
-            style={index + 1 === currentNum ? { backgroundColor: `${applyConfig.dotHighlightColor}` } : { backgroundColor: `${applyConfig.dotBgColor}` }}
-         >
+            style={index + 1 === currentNum
+               ? { backgroundColor: `${applyConfig.dotHighlightColor}` }
+               : { backgroundColor: `${applyConfig.dotBgColor}` }
+            }>
          </span>
       );
    };
@@ -74,11 +76,11 @@ export const Stack = ({ images, userConfig }) => {
                   postition:absolute;
                   left:50%;
                   top:50%;
-                  transform: translate(-50%, -50%) scale(0);
+                  transform: translate(-50%, -50%) scale(1);
                   &:hover{
                      transition: 0.2s linear;
                      cursor:pointer;
-                     transform: translate(-50%, -50%) scale(1.15);
+                     transform: translate(-50%, -50%) scale(1.5);
                   }
                `}
                className={i < currentNum

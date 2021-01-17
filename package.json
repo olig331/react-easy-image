@@ -2,7 +2,7 @@
   "name": "react-easy-image",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/app.js",
   "scripts": {
     "build": "webpack",
     "start": "webpack serve --watch --mode=development"
@@ -30,6 +30,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-easy-img": "^1.0.2",
     "styled-components": "^5.2.1"
   }
 }
