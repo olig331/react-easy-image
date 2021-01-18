@@ -8,10 +8,10 @@ import '../chevrons.css';
 export const Stack = ({ images, userConfig }) => {
 
    const applyConfig = {
-      containerWidth: userConfig.containerWidth,
-      containerHeight: userConfig.containerHeight,
       imgWidth: userConfig.imgWidth,
       imgHeight: userConfig.imgHeight,
+      containerWidth: userConfig.containerWidth ?? `calc(${userConfig.imgWidth} + 150px)`,
+      containerHeight: userConfig.containerHeight ?? `calc(${userConfig.imgHeight} + 150px)`,
       dotHighlightColor: userConfig.dotHighlightColor ?? "violet",
       dotBgColor: userConfig.dotBgColor ?? "#777",
       border: userConfig.border ?? "none",
@@ -45,6 +45,7 @@ export const Stack = ({ images, userConfig }) => {
       );
    };
 
+
    return (
       <div
          className="container_div"
@@ -66,7 +67,7 @@ export const Stack = ({ images, userConfig }) => {
             <img
                key={i}
                src={x.default}
-               onClick={() => currentNum > 0 ? setCurrentNum(prev => prev - 1) : setCurrentNum(images.length - 1)}
+               onClick={() => currentNum > 1 ? setCurrentNum(prev => prev - 1) : setCurrentNum(images.length)}
                css={css`
                   width: ${applyConfig.imgWidth};
                   height: ${applyConfig.imgHeight}; 
@@ -161,9 +162,9 @@ Stack.propTypes = {
    userConfig: PropTypes.shape({
       imgHeight: requiredPropsCheck.isRequired,
       imgWidth: requiredPropsCheck.isRequired,
+      containerWidth: PropTypes.string,
+      containerHeight: PropTypes.string,
       border: PropTypes.string,
-      containerWidth: PropTypes.string.isRequired,
-      containerHeight: PropTypes.string.isRequired,
       dotHighlightColor: PropTypes.string,
       dotBgColor: PropTypes.string,
       shadowColor: PropTypes.string,
