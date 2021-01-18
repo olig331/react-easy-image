@@ -34,7 +34,7 @@ All components must be passed a **userConfig** prop which must be an object with
 &nbsp; please see the relevant information on how to correctly use the different components
 
 <ins>__Example:__</ins>
-  <img width="598" height="510" src="./src/docsImgs/exampleImg.PNG">
+  <img width="598" height="510" src="./src/docsImgs/exmapleImg.PNG">
 
 # Stack #
 
@@ -130,8 +130,8 @@ Tile's config options are as follows:
 | scale   |    number     |     no  |	1.1 |
 | traction|number|no|17|
 
-![](./src/docsImgs/Tile.PNG =520x590)
-<img width="520" height="590" src="./src/docsImgs/Tile.PNG">
+
+<img width="520" height="590" src="./src/docsImgs/Tile.png">
 
 [try on codepen](www.codepen.io) 
 
@@ -196,8 +196,8 @@ const  tileConfig  = {
 }
 ```
 
-![](./src/docsImgs/simpleSlides1.PNG =370x500) &nbsp; ![](./src/docsImgs/simpleSlides2.PNG =370x500)
-<img width="370" height="500" src="./src/docsImgs/simpleSlides1.PNG"> <img width="370" height="500" src="./src/docsImgs/simpleSlides2.PNG">
+
+<img width="370" height="500" src="./src/docsImgs/SimpleSlide1.PNG"> <img width="370" height="500" src="./src/docsImgs/SimpleSlide2.PNG">
 
 [try on codepen](www.codepen.io) 
 
