@@ -33,7 +33,7 @@ All components must be passed a **userConfig** prop which must be an object with
 
 &nbsp; please see the relevant information on how to correctly use the different components
 
-<ins>__Example:__</ins>
+<ins>__Example:__</ins> <br/>
   <img width="598" height="510" src="./src/docsImgs/exmapleImg.PNG">
 
 # Stack #
