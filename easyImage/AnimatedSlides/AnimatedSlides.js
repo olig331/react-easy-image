@@ -12,15 +12,13 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
 
    // Configuration Settings
    const applyConfig = {
-      containerWidth: userConfig.containerWidth,
-      containerHeight: userConfig.containerHeight,
       imgWidth: userConfig.imgWidth,
       imgHeight: userConfig.imgHeight,
       dotHighlightColor: userConfig.dotHighlightColor ?? "violet",
       dotBgColor: userConfig.dotBgColor ?? "#777",
-      maxShadowBlur: userConfig.maxShadowBlur ?? 54,
+      maxShadowBlur: userConfig.maxShadowBlur ?? 64,
       shadowColor: userConfig.shadowColor ?? "rgba(0,0,0, 0.19)",
-      shadows: userConfig.shadows ?? true,
+
       widthNumForCalc: parseInt(userConfig.imgWidth.replace(/([a-z]|[A-Z]|[%])/g, "")),
       heightNumForCalc: parseInt(userConfig.imgHeight.replace(/([a-z]|[A-Z]|[%])/g, "")),
       rotateTime: userConfig.rotateTime ?? 350
@@ -288,7 +286,6 @@ AnimatedSlides.propTypes = {
       dotBgColor: PropTypes.string,
       maxShadowBlur: PropTypes.number,
       shadowColor: PropTypes.string,
-      shadows: PropTypes.bool,
       rotateTime: PropTypes.number
    })
 }

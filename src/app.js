@@ -1,9 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Stack } from '../easyImage/Stack/Stack';
-// import { Tile } from '../easyImage/Tile/Tile';
-// import { SimpleSlides } from '../easyImage/Slideshow/SimpleSlides';
-// import { AnimatedSlides } from '../easyImage/AnimatedSlides/AnimatedSlides';
 import { Stack, Tile, SimpleSlides, AnimatedSlides } from 'react-easy-img';
 import './app.css';
 import card from './imgs/cards/10H.png';
@@ -24,6 +20,8 @@ const App = () => {
       imgWidth: "250px",
       imgHeight: "400px",
       shadowColor: "rgba(0,0,0,0.09)",
+      capFontSize: "22px",
+      capBgColor: "rgba(50,50,50, 0.89)",
       allowDots: true,
       chevronStyle: 6,
       chevronScale: 1.6
@@ -54,12 +52,17 @@ const App = () => {
       console.log(r)
       return r.keys().map(r);
    };
-
-   //if you get TS context error-- - npm install - D @types/webpack-env
    let images = importAll(
       require.context("./imgs/cards", true, /\.(png|jpe?g|svg)$/)
    );
 
+   // const stackImagesReq = [
+   //    require('./imgs/aniSlides/image1.jpg'),
+   //    require('./imgs/aniSlides/image2.jpg'),
+   //    require('./imgs/aniSlides/image3.jpg'),
+   //    require('./imgs/aniSlides/image4.jpg'),
+   //    require('./imgs/aniSlides/image5.jpg')
+   // ];
 
    const aniSlidesConfig = {
       containerWidth: "100%",
@@ -88,22 +91,30 @@ const App = () => {
             />
          </div>
 
-         <div className="tile_container">
 
+         <div className="tile_container">
             <Tile config={tileConfig}>
                <img src={card} />
             </Tile>
-
          </div>
+
 
          <div className="slide_container">
-            <SimpleSlides images={slideArr} userConfig={slideConfig} />
+            <SimpleSlides
+               images={slideArr}
+               userConfig={slideConfig}
+            />
          </div>
 
+
          <div className="animated_slide_container">
-            <AnimatedSlides images={aniImages} userConfig={aniSlidesConfig} />
+            <AnimatedSlides
+               images={aniImages}
+               userConfig={aniSlidesConfig}
+            />
          </div>
       </div>
+
    )
 }
 

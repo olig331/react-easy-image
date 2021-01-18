@@ -36,3 +36,17 @@ body{
   justify-content: center;
   align-items: center;
 }
+
+.chevrons {
+   width: 100%;
+   margin: 0 auto;
+   border: 2px solid green;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-evenly;
+}
+
+.chevrons > *{
+   margin: 20px;
+   padding: 10px;
+}

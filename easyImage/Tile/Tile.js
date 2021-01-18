@@ -78,6 +78,7 @@ export const Tile = ({ children, config }) => {
 
 Tile.propTypes = {
    config: PropTypes.shape({
+      traction: PropTypes.number,
       shadowColor: PropTypes.string,
       maxShadowBlur: PropTypes.number,
       traction: PropTypes.number,
