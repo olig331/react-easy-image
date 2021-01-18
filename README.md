@@ -43,7 +43,7 @@ All components must be passed a **userConfig** prop which must be an object with
 After importing **react easy img** render the **Stack** component in your JSX 
 the **Stack** Component must be passed 2 properties:
 
-&nbsp;&nbsp;&nbsp; 1. *images*
+&nbsp;&nbsp;&nbsp; 1. *images* <br/>
 &nbsp;&nbsp;&nbsp; 2. *userConfig*
 
 &nbsp;`<Stack images={stackImages} userConfig={yourConfigSettings} />`
