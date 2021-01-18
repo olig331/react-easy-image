@@ -34,7 +34,7 @@ All components must be passed a **userConfig** prop which must be an object with
 &nbsp; please see the relevant information on how to correctly use the different components
 
 <ins>__Example:__</ins>
-  ![](./src/docsImgs/example.PNG =598x510)
+  <img width="598" height="510" src="./src/docsImgs/exampleImg.PNG">
 
 # Stack #
 
@@ -131,6 +131,7 @@ Tile's config options are as follows:
 | traction|number|no|17|
 
 ![](./src/docsImgs/Tile.PNG =520x590)
+<img width="520" height="590" src="./src/docsImgs/Tile.PNG">
 
 [try on codepen](www.codepen.io) 
 
@@ -196,6 +197,7 @@ const  tileConfig  = {
 ```
 
 ![](./src/docsImgs/simpleSlides1.PNG =370x500) &nbsp; ![](./src/docsImgs/simpleSlides2.PNG =370x500)
+<img width="370" height="500" src="./src/docsImgs/simpleSlides1.PNG"> <img width="370" height="500" src="./src/docsImgs/simpleSlides2.PNG">
 
 [try on codepen](www.codepen.io) 
 
@@ -251,7 +253,8 @@ const  aniSlidesConfig  = {
 }
 ```
 
-![](./src/docsImgs/aniSlides.PNG =1014x394)
+
+<img width="1014" height="394" src="./src/docsImgs/aniSlides.PNG">
 
 [try on codepen](www.codepen.io) 
 
@@ -261,9 +264,9 @@ const  aniSlidesConfig  = {
 
 | Chevron Style Number | Style |    
 | :---  |    :----:   | 
-| 1     | ![](./src/docs/docsImgs/chevron1.PNG =180x180)
-| 2		| ![](./src/docs/docsImgs/chevron2.PNG =180x180)  
-| 3		| ![](./src/docs/docsImgs/chevron3.PNG =180x180)
-| 4		| ![](./src/docs/docsImgs/chevron4.PNG =180x180)
-| 5		| ![](./src/docs/docsImgs/chevron5.PNG =180x180)
-| 6		| ![](./src/docs/docsImgs/chevron6.PNG =180x180)
+| 1     | <img width="180" height="180" src="./src/docsImgs/chevron1.PNG">
+| 2		| <img width="180" height="180" src="./src/docsImgs/chevron2.PNG">
+| 3		| <img width="180" height="180" src="./src/docsImgs/chevron3.PNG">
+| 4		|<img width="180" height="180" src="./src/docsImgs/chevron4.PNG">
+| 5		| <img width="180" height="180" src="./src/docsImgs/chevron5.PNG">
+| 6		| <img width="180" height="180" src="./src/docsImgs/chevron6.PNG">
