@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Stack, Tile, SimpleSlides, AnimatedSlides } from 'react-easy-img';
+import { Stack } from '../easyImage/Stack/Stack';
+import { Tile, SimpleSlides, AnimatedSlides } from 'react-easy-img';
 import './app.css';
 import card from './imgs/cards/10H.png';
 

@@ -2,7 +2,6 @@
 # React Easy Img
 
   
-
 &nbsp;&nbsp; React Easy Img is a React componenet library to assist in creating interactive/responsive good looking images for your webpage.
 
 As of version 1.0.2 React Easy Img has 4 components to choose from with more to be added in the near future. Those components are:
@@ -22,33 +21,29 @@ All components must be passed a **userConfig** prop which must be an object with
 # Installation and Setup
 
   
-
-&nbsp; React Easy image can be installed via NPM with the following command <br/>
+&nbsp; React Easy image can be installed via NPM with the following command. <br/>
 
 &nbsp;&nbsp; `npm install react-easy-img` <br/>
 
-&nbsp; Once installed simply import the component you would to use "Stack, Tile, AnimatedSlides, SimpleSlides" into your desired React Component. <br/>
+&nbsp; Once installed import the R-E-I component you would to use "Stack, Tile, AnimatedSlides, SimpleSlides" into your desired React component. <br/>
 
 &nbsp;&nbsp; `import {name of component} from 'react-easy-img'` <br/>
 
-&nbsp; please see the relevant information on how to correctly use the different components
+&nbsp; please see the relevant information on how to correctly utilise R-E-I components.
 
 <ins>__Example:__</ins> <br/>
   <img width="598" height="510" src="./src/docsImgs/exmapleImg.PNG">
 
 # Stack #
 
-  
-
-After importing **react easy img** render the **Stack** component in your JSX 
-the **Stack** Component must be passed 2 properties:
+The **Stack** Component must be passed 2 properties:
 
 &nbsp;&nbsp;&nbsp; 1. *images* <br/>
 &nbsp;&nbsp;&nbsp; 2. *userConfig*
 
 &nbsp;`<Stack images={stackImages} userConfig={yourConfigSettings} />`
 ### <ins> Images</ins>
-&nbsp;&nbsp; Images must be an array of required images via webpack via the messages
+&nbsp;&nbsp; Images must be an array of required images via webpack
 ```
 const  importAll = (r) => {
 	return  r.keys().map(r);
@@ -72,10 +67,12 @@ const stackImages  = [
   
   Stack's config options are as follows: 
 
-| Key         | Type |    Property is required | Defaults |
+| Key         | Type |    Property is required | Default Values |
 | :---        |    :----:   |  :----:|    :---|
 | imgWidth      	| string       |   __yes__    | N/A|
 | imgHeight   		| string        |     __yes__  |	N/A|
+| containerHeight   		| string        |     no  |	imgWidth + 150px|
+| containerWidth   		| string        |     no  |	imgHeight + 150px|
 | border| string        |     no  | "none"|
 | allowDots|boolean|no|true|
 | dotHighlightColor| string        |     no  | ""violet |
@@ -84,6 +81,8 @@ const stackImages  = [
 | [chevronStyle](#chevron-styles)|number|no|1|
 | chevronHoverColor|string|no|"black"|
 | chevronColor|string|no|"black"|
+
+if no conatinerHeight and containerWidth values are passed they will be calclated with the imgWidth and imgHeight + 150px
 
 __Eample__:
 ```
@@ -264,9 +263,9 @@ const  aniSlidesConfig  = {
 
 | Chevron Style Number | Style |    
 | :---  |    :----:   | 
-| 1     | <img width="180" height="180" src="./src/docsImgs/chevron1.PNG">
+| 1     |  <img width="180" height="180" src="./src/docsImgs/chevron1.PNG">
 | 2		| <img width="180" height="180" src="./src/docsImgs/chevron2.PNG">
 | 3		| <img width="180" height="180" src="./src/docsImgs/chevron3.PNG">
-| 4		|<img width="180" height="180" src="./src/docsImgs/chevron4.PNG">
+| 4		| <img width="180" height="180" src="./src/docsImgs/chevron4.PNG">
 | 5		| <img width="180" height="180" src="./src/docsImgs/chevron5.PNG">
 | 6		| <img width="180" height="180" src="./src/docsImgs/chevron6.PNG">
