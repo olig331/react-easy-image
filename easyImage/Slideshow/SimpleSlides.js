@@ -6,6 +6,23 @@ import '../chevrons.css';
 
 export const SimpleSlides = ({ images, userConfig, children }) => {
 
+   let appliedImages = [];
+
+   function sortImages() {
+      if (typeof (images[0].img) === 'object') {
+         for (let i = 0; i < images.length; i++) {
+            let copy = images[i];
+            copy.img = images[i].img.default
+            appliedImages.push(copy);
+         }
+      } else {
+         appliedImages = [...images]
+      }
+   }
+
+   sortImages();
+
+
    const applyConfig = {
       containerWidth: userConfig.containerWidth,
       containerHeight: userConfig.containerHeight,
@@ -63,7 +80,7 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
                }
             }`
          }>
-         {images.map((object, index) => (
+         {appliedImages.map((object, index) => (
             <div key={index}
                title={object.cap}
                className="slide_img_con"
@@ -101,7 +118,7 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
                   `}
             >
                <img
-                  src={object.img.default}
+                  src={object.img}
                   css={css`
                      transition: 0.25s linear;
                      width:${applyConfig.imgWidth};

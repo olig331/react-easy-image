@@ -7,6 +7,22 @@ import '../chevrons.css';
 
 export const AnimatedSlides = ({ images, userConfig, children }) => {
 
+   let appliedImages = [];
+
+   function sortImages() {
+      if (typeof (images[0].img) === 'object') {
+         for (let i = 0; i < images.length; i++) {
+            let copy = images[i];
+            copy.img = images[i].img.default
+            appliedImages.push(copy);
+         }
+      } else {
+         appliedImages = [...images]
+      }
+   }
+
+   sortImages();
+
    // Imported Custom Hook for screen width and height;
    const { width, height } = useWindowDimensions();
 
@@ -166,10 +182,10 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
             <img
                src={
                   iteration == 0
-                     ? images[indexes[0]].img.default
+                     ? appliedImages[indexes[0]].img
                      : iteration == 1
-                        ? images[indexes[1]].img.default
-                        : images[indexes[2]].img.default
+                        ? appliedImages[indexes[1]].img
+                        : appliedImages[indexes[2]].img
                }
                className={iteration !== 1 ? "hoverImg" : ""}
                css={css`filter: drop-shadow(0 1px 2px ${applyConfig.shadowColor}) 
@@ -199,10 +215,10 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
             <img
                src={
                   iteration == 0
-                     ? images[indexes[1]].img.default
+                     ? appliedImages[indexes[1]].img
                      : iteration === 1
-                        ? images[indexes[2]].img.default
-                        : images[indexes[0]].img.default
+                        ? appliedImages[indexes[2]].img
+                        : appliedImages[indexes[0]].img
                }
                className={iteration !== 0 ? "hoverImg" : ""}
                css={css`filter: drop-shadow(0 1px 2px ${applyConfig.shadowColor}) 
@@ -232,10 +248,10 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
             <img
                src={
                   iteration == 0
-                     ? images[indexes[2]].img.default
+                     ? appliedImages[indexes[2]].img
                      : iteration == 1
-                        ? images[indexes[0]].img.default
-                        : images[indexes[1]].img.default
+                        ? appliedImages[indexes[0]].img
+                        : appliedImages[indexes[1]].img
                }
                className={iteration !== 2 ? "hoverImg" : ""}
                css={css`filter: drop-shadow(0 1px 2px ${applyConfig.shadowColor}) 

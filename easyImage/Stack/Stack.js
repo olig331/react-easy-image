@@ -7,6 +7,20 @@ import '../chevrons.css';
 
 export const Stack = ({ images, userConfig }) => {
 
+   let appliedImages = [];
+
+   function sortImages() {
+      if (typeof (images[0]) == 'object') {
+         for (let i = 0; i < images.length; i++) {
+            appliedImages.push(images[i].default)
+         }
+      } else {
+         appliedImages = [...images]
+      }
+   }
+
+   sortImages()
+
    const applyConfig = {
       imgWidth: userConfig.imgWidth,
       imgHeight: userConfig.imgHeight,
@@ -63,10 +77,10 @@ export const Stack = ({ images, userConfig }) => {
             border: ${applyConfig.border};`
          }
       >
-         {images.map((x, i) => (
+         {appliedImages.map((x, i) => (
             <img
                key={i}
-               src={x.default}
+               src={x}
                onClick={() => currentNum > 1 ? setCurrentNum(prev => prev - 1) : setCurrentNum(images.length)}
                css={css`
                   width: ${applyConfig.imgWidth};
@@ -137,7 +151,7 @@ export const Stack = ({ images, userConfig }) => {
                      &:hover{
                         color: ${applyConfig.chevronHoverColor}
                         transition: 0.15s linear;
-                        margin-right: 5px;
+                        margin-right: -5px;
                         cursor:pointer;
                      }
                   `}

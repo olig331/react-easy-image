@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Stack } from '../easyImage/Stack/Stack';
-import { Tile, SimpleSlides, AnimatedSlides } from 'react-easy-img';
+import { AnimatedSlides } from '../easyImage/AnimatedSlides/AnimatedSlides';
+import { Tile, SimpleSlides } from 'react-easy-img';
 import './app.css';
-import card from './imgs/cards/10H.png';
+
 
 
 const App = () => {
-
 
    const slideArr = [
       { img: require("./imgs/cards/2C.png"), cap: "2 of clubs" },
@@ -46,7 +46,7 @@ const App = () => {
       dotHighlightColor: "violet",
       shadowColor: "rgba(100, 100, 100, 0.05)",
       allowDots: false,
-      allowChevrons: false
+      allowChevrons: true,
    }
 
    const importAll = (r) => {
@@ -54,16 +54,16 @@ const App = () => {
       return r.keys().map(r);
    };
    let images = importAll(
-      require.context("./imgs/cards", true, /\.(png|jpe?g|svg)$/)
+      require.context("./imgs/cards", false, /\.(png|jpe?g|svg)$/)
    );
 
-   // const stackImagesReq = [
-   //    require('./imgs/aniSlides/image1.jpg'),
-   //    require('./imgs/aniSlides/image2.jpg'),
-   //    require('./imgs/aniSlides/image3.jpg'),
-   //    require('./imgs/aniSlides/image4.jpg'),
-   //    require('./imgs/aniSlides/image5.jpg')
-   // ];
+   const stackImagesReq = [
+      require('./imgs/aniSlides/image1.jpg'),
+      require('./imgs/aniSlides/image2.jpg'),
+      require('./imgs/aniSlides/image3.jpg'),
+      require('./imgs/aniSlides/image4.jpg'),
+      require('./imgs/aniSlides/image5.jpg')
+   ];
 
    const aniSlidesConfig = {
       containerWidth: "100%",
@@ -81,6 +81,7 @@ const App = () => {
       { img: require('./imgs/aniSlides/image4.jpg'), cap: "" },
       { img: require('./imgs/aniSlides/image5.jpg'), cap: "" }
    ]
+
 
    return (
       <div style={{ transform: "rotate(0.02deg)" }}>
