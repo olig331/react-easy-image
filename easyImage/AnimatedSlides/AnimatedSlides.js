@@ -9,6 +9,8 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
 
    let appliedImages = [];
 
+   // Function To Detirmine whether images have been imported through webpack or paths are given
+   // If webpack the path strings are extracted if not use the strings as they are 
    function sortImages() {
       if (typeof (images[0].img) === 'object') {
          for (let i = 0; i < images.length; i++) {
@@ -20,7 +22,6 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
          appliedImages = [...images]
       }
    }
-
    sortImages();
 
    // Imported Custom Hook for screen width and height;
@@ -54,6 +55,7 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
       setmainImgDimension(mainImgWidth);
       setcalculatedContainerHeight(height);
    }, []);
+
 
    // Perfrorm everytime the width of window changes providing 
    // Accurate dimensions for the smaller images
@@ -134,20 +136,23 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
       );
    };
 
+   // Rotate the images Right
    const rotateBack = () => {
       caroselLogic.left_button_press();
       setiteration(prev => prev === 2 ? 0 : prev + 1);
       setcurrentNumber(prev => prev === 0 ? images.length - 1 : prev - 1)
    }
 
+   // Rotate the images left
    const rotateForward = () => {
       caroselLogic.right_button_press();
       setiteration(prev => prev === 0 ? 2 : prev - 1);
       setcurrentNumber(prev => prev === images.length - 1 ? 0 : prev + 1)
    }
 
+   // Logic for rendering only one image to save performance 
+   // and moving the images around 
    const caroselLogic = {
-
       offset_index: function (image_index, offset) {
          console.log((image_index + offset) + images.length) % images.length
          return ((image_index + offset) + images.length) % images.length
@@ -173,10 +178,17 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
    };
 
    return (
-      <div css={css`width: 100%; height: ${applyConfig.containerHeight};`}>
+      <div css={css`
+         border: 2px solid red;
+         width: 100%; 
+         height:calc((${applyConfig.heightNumForCalc} / 100)*22  + 80)px;
+         maxHeight: calc(${applyConfig.imgHeight} + 80px)px;
+         `}>
+
          <div
             className="imgs_container"
-            style={{ height: `${calculatedContainerHeight}` }}>
+            style={{ height: `${calculatedContainerHeight}` }}
+         >
 
             {/* Left Side Img */}
             <img
@@ -199,9 +211,7 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
                      ? leftSide
                      : iteration == 1
                         ? middle
-                        : iteration == 2
-                           ? rightSide
-                           : { color: "white" }}
+                        : rightSide}
                onClick={() => {
                   iteration === 0
                      ? rotateBack()
@@ -232,9 +242,7 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
                      ? middle
                      : iteration == 1
                         ? rightSide
-                        : iteration == 2
-                           ? leftSide
-                           : { color: "white" }}
+                        : leftSide}
                onClick={() => {
                   iteration === 1
                      ? rotateForward()
@@ -265,9 +273,7 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
                      ? rightSide
                      : iteration == 1
                         ? leftSide
-                        : iteration == 2
-                           ? middle
-                           : { color: "white" }}
+                        : middle}
                onClick={() => {
                   iteration === 0
                      ? rotateForward()
@@ -276,6 +282,22 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
                         : null
                }}
             />
+
+            <span
+               css={css`
+                  position:absolute;
+                  left:50%;
+                  top:50%;
+                  transform: translate(-50%, -50%);
+                  z-index:50000;
+                  color: white;
+                  background-color:gray;
+                  width: calc(${mainImgDimensions} - 7px);
+                  text-align: center;
+               `}
+            >
+               Hello World Caption
+            </span>
 
             <div
                css={css`

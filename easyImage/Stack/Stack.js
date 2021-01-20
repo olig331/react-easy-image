@@ -30,6 +30,8 @@ export const Stack = ({ images, userConfig }) => {
       dotBgColor: userConfig.dotBgColor ?? "#777",
       border: userConfig.border ?? "none",
       allowDots: userConfig.allowDots ?? true,
+      shadowColor: userConfig.shadowColor ?? "rgba(0,0,0, 0.05)",
+      shadowHoverColor: userConfig.shadowHoverColor ?? "rgba(0,0,0, 0.25)",
       chevronStyle: userConfig.chevronStyle ?? 1,
       chevronScale: userConfig.chevronScale ?? 1,
       chevronHoverColor: userConfig.chevronHoverColor ?? "black",
@@ -79,6 +81,12 @@ export const Stack = ({ images, userConfig }) => {
       >
          {appliedImages.map((x, i) => (
             <img
+               className={i < currentNum
+                  ? `stack_image ${i} `
+                  : i % 2
+                     ? `stack_image ${i} displayNoneLefty`
+                     : `stack_image ${i} displayNoneRighty`
+               }
                key={i}
                src={x}
                onClick={() => currentNum > 1 ? setCurrentNum(prev => prev - 1) : setCurrentNum(images.length)}
@@ -89,18 +97,26 @@ export const Stack = ({ images, userConfig }) => {
                   left:50%;
                   top:50%;
                   transform: translate(-50%, -50%) scale(1);
+                  filter: drop-shadow(0 0px 1px ${applyConfig.shadowColor}) 
+                     drop-shadow(0 1px 2px ${applyConfig.shadowColor}) 
+                     drop-shadow(0 2px 4px ${applyConfig.shadowColor})
+                     drop-shadow(0 4px 8px ${applyConfig.shadowColor})
+                     drop-shadow(0 8px 16px ${applyConfig.shadowColor})
+                     drop-shadow(0 16px 32px ${applyConfig.shadowColor});
                   &:hover{
                      transition: 0.2s linear;
                      cursor:pointer;
                      transform: translate(-50%, -50%) scale(1.5);
+                     filter: drop-shadow(0 0px 1px ${applyConfig.shadowHoverColor}) 
+                     drop-shadow(0 1px 2px ${applyConfig.shadowHoverColor}) 
+                     drop-shadow(0 2px 4px ${applyConfig.shadowHoverColor})
+                     drop-shadow(0 4px 8px ${applyConfig.shadowHoverColor})
+                     drop-shadow(0 8px 16px ${applyConfig.shadowHoverColor})
+                     drop-shadow(0 16px 32px ${applyConfig.shadowHoverColor});
+                     
                   }
                `}
-               className={i < currentNum
-                  ? `stack_img ${i} `
-                  : i % 2
-                     ? `stack_img ${i} displayNoneLeft`
-                     : `stack_img ${i} displayNoneRight`
-               } />
+            />
          ))}
 
          { applyConfig.allowDots
@@ -182,6 +198,7 @@ Stack.propTypes = {
       dotHighlightColor: PropTypes.string,
       dotBgColor: PropTypes.string,
       shadowColor: PropTypes.string,
+      shadowHoverColor: PropTypes.string,
       allowDots: PropTypes.bool,
       chevronColor: PropTypes.string,
       chevronHoverColor: PropTypes.string,
