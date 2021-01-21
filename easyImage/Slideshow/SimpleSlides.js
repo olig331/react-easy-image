@@ -32,7 +32,7 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
       shadowColor: userConfig.shadowColor ?? "rgba(0,0,0, 0.5)",
       capFontSize: userConfig.capFontSize ?? "14px",
       capColor: userConfig.capColor ?? "whitesmoke",
-      capBgColor: userConfig.capBgColor ?? "rgba(0,0,0,0.87)",
+      capBgColor: userConfig.capBgColor ?? "rgba(220,220,220, 0.89)",
       chevronStyle: userConfig.chevronStyle ?? 1,
       chevronScale: userConfig.chevronScale ?? 1,
       chevronColor: userConfig.chevronColor ?? "black",

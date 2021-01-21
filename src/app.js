@@ -76,15 +76,18 @@ const App = () => {
       imgWidth: "2000ppx",
       imgHeight: "1250px",
       dotBgColor: "slategray",
-      dotHighlightColor: "slateblue"
+      dotHighlightColor: "slateblue",
+      borderRadius: "8px"
    }
 
    const aniImages = [
-      { img: require('./imgs/aniSlides/image1.jpg'), cap: "asdasdasd" },
-      { img: require('./imgs/aniSlides/image2.jpg'), cap: "asdasd" },
-      { img: require('./imgs/aniSlides/image3.jpg'), cap: "sdasd" },
-      { img: require('./imgs/aniSlides/image4.jpg'), cap: "asdasd" },
-      { img: require('./imgs/aniSlides/image5.jpg'), cap: "asdasdasd" }
+      { img: require('./imgs/aniSlides/image1.jpg'), cap: "image 1" },
+      { img: require('./imgs/aniSlides/image2.jpg'), cap: "image 2" },
+      { img: require('./imgs/aniSlides/image3.jpg'), cap: "image 3" },
+      { img: require('./imgs/aniSlides/image4.jpg'), cap: "image 4" },
+      { img: require('./imgs/aniSlides/image5.jpg'), cap: "image 5" },
+      { img: require('./imgs/aniSlides/image6.jpg'), cap: "image 6" },
+      { img: require('./imgs/aniSlides/image7.jpg'), cap: "image 7" }
    ]
 
 
