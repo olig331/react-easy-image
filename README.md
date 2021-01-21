@@ -24,15 +24,16 @@ All components must be passed a **userConfig** prop which must be an object with
   
 &nbsp; React Easy image can be installed via NPM with the following command. <br/>
 
-&nbsp;&nbsp; `npm install react-easy-img` <br/>
+&nbsp;&nbsp; `npm install react-easy-image` <br/>
 
 &nbsp; Once installed import the R-E-I component you would to use "Stack, Tile, AnimatedSlides, SimpleSlides" into your desired React component. <br/>
 
-&nbsp;&nbsp; `import {name of component} from 'react-easy-img'` <br/>
+&nbsp;&nbsp; `import {name of component} from 'react-easy-image'` <br/>
 
 &nbsp; please see the relevant information on how to correctly utilise R-E-I components.
 
 <ins>__Example:__</ins> <br/>
+
   <img width="598" height="510" src="./src/docsImgs/exmapleImg.PNG">
 
 # Stack #
@@ -74,13 +75,14 @@ const stackImages  = [
 | imgHeight   		| string        |     __yes__  |	N/A|
 | containerHeight   		| string        |     no  |	imgWidth + 150px|
 | containerWidth   		| string        |     no  |	imgHeight + 150px|
+| shadowColor 		   | string        |     no  |	"rgba(0,0,0, 0.05)"|
+| shadowHoverColor   		| string        |     no  |	"rgba(0,0,0, 0.25)|
 | border| string        |     no  | "none"|
 | allowDots|boolean|no|true|
 | dotHighlightColor| string        |     no  | ""violet |
 | dotBgColor|    string|     no  |	"#777" |
 | allowChevrons |boolean|no|false|
 | [chevronStyle](#chevron-styles)|number|no|1|
-| chevronHoverColor|string|no|"black"|
 | chevronColor|string|no|"black"|
 
 if no conatinerHeight and containerWidth values are passed they will be calclated with the imgWidth and imgHeight + 150px
@@ -151,13 +153,13 @@ the **SimpleSlides** Component must be passed 2 properties:
 Due to having the option to have captions for these images the import method must differ slightly to that of *Stack* The images passed as a prop to **SimpleSlides** must be an **Array of objects** with the following key value pairs:
 ```
 const  simpleslidesArray  = [
-	{ img:  require("path-to-your-img.png"), cap:  "2 of clubs" },
-	{ img:  require("path-to-your-img.png"), cap:  "5 of hearts" },
-	{ img:  require('path-to-your-img.png'), cap:  "3 of dimaonds" },
+	{ img:  require("path-to-your-img.png"), cap:  "Image 1 Caption" },
+	{ img:  require("path-to-your-img.png"), cap:  "Image 1 Caption" },
+	{ img:  require('path-to-your-img.png'), cap:  "Image 1 Caption" },
 	{ img:  require("path-to-your-img.png"), cap: ""}
 ];
 
-// Captions can also be imported manually
+// Images can also be imported manually
 
 import image1 from 'yourpath/image1.png'
 import image2 from 'yourpath/image2.png'
@@ -235,11 +237,11 @@ the **AnimatedSlides** Component must be passed 2 properties:
 ### <ins>Images</ins>
 Due to having the option to have captions for these images the import method must differ slightly to that of *Stack* The images passed as a prop to **SimpleSlides** must be an **Array of objects** with the following key value pairs:
 ```
-const  simpleslidesArray  = [
-	{ img:  require("path-to-your-img.png"), cap:  "2 of clubs" },
-	{ img:  require("path-to-your-img.png"), cap:  "5 of hearts" },
-	{ img:  require('path-to-your-img.png'), cap:  "3 of dimaonds" },
-	{ img:  require("path-to-your-img.png"), cap: ""}
+const  animatedSlidesArray  = [
+	{ img:  require("path-to-your-img.png"), cap:  "Image 1 Caption" },
+	{ img:  require("path-to-your-img.png"), cap:  "Image 2 Caption" },
+	{ img:  require('path-to-your-img.png'), cap:  "Image 3 Caption" },
+	{ img:  require("path-to-your-img.png"), cap:  "Image 4 Caption"}
 ];
 
 // Images can also be imported normally 
@@ -251,11 +253,11 @@ import image4 from 'yourpath/image4.png'
 import image5 from 'yourpath/image5.png'
 
 const animatedSlidesArray = [
-      image1, 
-      image2, 
-      image3,
-      image4,
-      image5
+   {img: image1, cap: "image 1 caption"},
+   {img: image2, cap: "image 2 caption"},
+   {img: image3, cap: "image 3 caption"},
+   {img: image4, cap: "image 4 caption"},
+   {img: image5, cap: "image 5 caption"}
 ];
 ```
 If no caption is required just pass an empty string.
