@@ -38,7 +38,7 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
       widthNumForCalc: parseInt(userConfig.imgWidth.replace(/([a-z]|[A-Z]|[%])/g, "")),
       heightNumForCalc: parseInt(userConfig.imgHeight.replace(/([a-z]|[A-Z]|[%])/g, "")),
       rotateTime: userConfig.rotateTime ?? 350,
-      borderRadius: userConfig.borderRadius ?? "10px",
+      borderRadius: userConfig.borderRadius ?? "5px",
       capColor: userConfig.capColor ?? "#333",
       capBgColor: userConfig.capBgColor ?? "rgba(220,220,220, 0.89)",
       capFontSize: userConfig.capFontSize ?? "14px"
@@ -210,7 +210,6 @@ export const AnimatedSlides = ({ images, userConfig, children }) => {
    return (
       <div css={css`
          width: 100%; 
-         height:calc((${applyConfig.heightNumForCalc} / 100)*22  + 80)px;
          maxHeight: calc(${applyConfig.imgHeight} + 80px)px;
          `}>
 

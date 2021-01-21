@@ -12,9 +12,9 @@ import card from './imgs/cards/AD.png'
 const App = () => {
 
    const slideArr = [
-      { img: require("./imgs/aniSlides/image7.jpg"), cap: "img" },
-      { img: require("./imgs/aniSlides/image6.jpg"), cap: "testing font familys" },
-      { img: require('./imgs/aniSlides/image1.jpg'), cap: "" }
+      { img: require("./imgs/aniSlides/image7.jpg"), cap: "Image 1 Caption" },
+      { img: require("./imgs/aniSlides/image6.jpg"), cap: "Caption Example" },
+      { img: require('./imgs/aniSlides/image1.jpg'), cap: "Image 3 Caption" }
    ];
 
    const slideConfig = {
@@ -23,14 +23,13 @@ const App = () => {
       imgWidth: "960px",
       imgHeight: "640px",
       shadowColor: "rgba(0,0,0,0.09)",
-      capFontSize: "22px",
+      capFontSize: "20px",
       capBgColor: "rgba(220,220,220, 0.89)",
-      capColor: "#555",
+      capColor: "#333",
       allowDots: true,
       chevronStyle: 2,
       chevronScale: 1.6,
       chevronColor: "whitesmoke",
-      chevronHoverColor: "black",
       borderRadius: "10px"
    }
 
