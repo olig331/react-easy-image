@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import { css, jsx } from '@emotion/react';
 import './tile.css'
 
-export const Tile = ({ children, config }) => {
+export const Tile = ({ children, userConfig }) => {
 
    let applyConfig = {
-      traction: config.traction ?? 17,
-      shadowColor: config.shadowColor ?? "rgba(0,0,0,0.07)",
-      maxShadowBlur: config.maxShadowBlur ?? 64,
-      width: config.width,
-      height: config.height,
-      scale: config.scale ?? 1.1
+      traction: userConfig.traction ?? 17,
+      shadowColor: userConfig.shadowColor ?? "rgba(0,0,0,0.07)",
+      maxShadowBlur: userConfig.maxShadowBlur ?? 64,
+      width: userConfig.width,
+      height: userConfig.height,
+      scale: userConfig.scale ?? 1.1
    }
 
    // XCoord, YCoord, Scale 
@@ -77,7 +77,7 @@ export const Tile = ({ children, config }) => {
 }
 
 Tile.propTypes = {
-   config: PropTypes.shape({
+   userConfig: PropTypes.shape({
       traction: PropTypes.number,
       shadowColor: PropTypes.string,
       maxShadowBlur: PropTypes.number,

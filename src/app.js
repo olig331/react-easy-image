@@ -2,30 +2,35 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Stack } from '../easyImage/Stack/Stack';
 import { AnimatedSlides } from '../easyImage/AnimatedSlides/AnimatedSlides';
-import { Tile, SimpleSlides } from 'react-easy-img';
+import { SimpleSlides } from '../easyImage/Slideshow/SimpleSlides'
+import { Tile } from 'react-easy-img';
 import './app.css';
+import card from './imgs/cards/AD.png'
 
 
 
 const App = () => {
 
    const slideArr = [
-      { img: require("./imgs/cards/2C.png"), cap: "2 of clubs" },
-      { img: require("./imgs/cards/5H.png"), cap: "5 of hearts" },
-      { img: require('./imgs/cards/3D.png'), cap: "3 of dimaonds" }
+      { img: require("./imgs/aniSlides/image7.jpg"), cap: "Image 1 Caption" },
+      { img: require("./imgs/aniSlides/image6.jpg"), cap: "Caption Example" },
+      { img: require('./imgs/aniSlides/image1.jpg'), cap: "Image 3 Caption" }
    ];
 
    const slideConfig = {
-      containerWidth: "350px",
-      containerHeight: "500px",
-      imgWidth: "250px",
-      imgHeight: "400px",
+      containerWidth: "960px",
+      containerHeight: "730px",
+      imgWidth: "960px",
+      imgHeight: "640px",
       shadowColor: "rgba(0,0,0,0.09)",
-      capFontSize: "22px",
-      capBgColor: "rgba(50,50,50, 0.89)",
+      capFontSize: "20px",
+      capBgColor: "rgba(220,220,220, 0.89)",
+      capColor: "#333",
       allowDots: true,
-      chevronStyle: 6,
-      chevronScale: 1.6
+      chevronStyle: 2,
+      chevronScale: 1.6,
+      chevronColor: "whitesmoke",
+      borderRadius: "10px"
    }
 
    const tileConfig = {
@@ -44,7 +49,6 @@ const App = () => {
       containerHeight: "600px",
       dotBgColor: "#888",
       dotHighlightColor: "violet",
-      shadowColor: "rgba(100, 100, 100, 0.05)",
       allowDots: false,
       allowChevrons: true,
    }
@@ -71,15 +75,18 @@ const App = () => {
       imgWidth: "2000ppx",
       imgHeight: "1250px",
       dotBgColor: "slategray",
-      dotHighlightColor: "slateblue"
+      dotHighlightColor: "slateblue",
+      borderRadius: "8px"
    }
 
    const aniImages = [
-      { img: require('./imgs/aniSlides/image1.jpg'), cap: "" },
-      { img: require('./imgs/aniSlides/image2.jpg'), cap: "" },
-      { img: require('./imgs/aniSlides/image3.jpg'), cap: "" },
-      { img: require('./imgs/aniSlides/image4.jpg'), cap: "" },
-      { img: require('./imgs/aniSlides/image5.jpg'), cap: "" }
+      { img: require('./imgs/aniSlides/image1.jpg'), cap: "image 1" },
+      { img: require('./imgs/aniSlides/image2.jpg'), cap: "image 2" },
+      { img: require('./imgs/aniSlides/image3.jpg'), cap: "image 3" },
+      { img: require('./imgs/aniSlides/image4.jpg'), cap: "image 4" },
+      { img: require('./imgs/aniSlides/image5.jpg'), cap: "image 5" },
+      { img: require('./imgs/aniSlides/image6.jpg'), cap: "image 6" },
+      { img: require('./imgs/aniSlides/image7.jpg'), cap: "image 7" }
    ]
 
 

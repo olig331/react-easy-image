@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { object } from 'prop-types';
 import { css } from '@emotion/react';
 import './slides.css';
 import '../chevrons.css';
@@ -29,16 +29,16 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
       imgWidth: userConfig.imgWidth,
       maxImgHeight: userConfig.imgHeight,
       maxShadowBlur: userConfig.maxShadowBlur ?? 64,
-      shadowColor: userConfig.shadowColor ?? "rgba(0,0,0, 0.5)",
+      shadowColor: userConfig.shadowColor ?? "rgba(0,0,0, 0.09)",
       capFontSize: userConfig.capFontSize ?? "14px",
-      capColor: userConfig.capColor ?? "whitesmoke",
-      capBgColor: userConfig.capBgColor ?? "rgba(0,0,0,0.87)",
-      chevronStyle: userConfig.chevronStyle ?? 1,
+      capColor: userConfig.capColor ?? "#333",
+      capBgColor: userConfig.capBgColor ?? "rgba(220,220,220, 0.89)",
+      chevronStyle: userConfig.chevronStyle ?? 2,
       chevronScale: userConfig.chevronScale ?? 1,
-      chevronHoverColor: userConfig.chevronHoverColor ?? "black",
       chevronColor: userConfig.chevronColor ?? "black",
       dotHighlightColor: userConfig.dotHighlightColor ?? "violet",
       dotBgColor: userConfig.dotBgColor ?? "#888",
+      borderRadius: userConfig.borderRadius ?? "5px",
       allowDots: userConfig.allowDots ?? true,
    }
 
@@ -61,6 +61,14 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
       );
    };
 
+   const findBgColor = (index) => {
+      if (appliedImages[index].cap == "") {
+         return "transparent";
+      } else {
+         return `${applyConfig.capBgColor}`;
+      }
+   }
+
    return (
       <div
          className="simple_slide_con"
@@ -81,10 +89,13 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
             }`
          }>
          {appliedImages.map((object, index) => (
-            <div key={index}
+            <div
+               key={index}
                title={object.cap}
                className="slide_img_con"
-               style={index + 1 === currentImgage ? { display: "block" } : { display: "none" }}
+               style={index + 1 === currentImgage
+                  ? { display: "block" }
+                  : { display: "none" }}
                css={css`
                   transition: 0.25s linear;
                   position: absolute;
@@ -101,36 +112,54 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
                      content: attr(title);
                      opacity: 0;
                      position: absolute;
-                     top: 50%;
+                     bottom: 1px;
                      left: 50%;
-                     background-color: ${applyConfig.capBgColor};
-                     padding: 5px 10px;
-                     border-radius: 5px;
+                     background-color: ${findBgColor(index)};
+                     padding:10px 0;
+                     width: 100%;
+                     z-index: 1000;
                      font-size: ${applyConfig.capFontSize};
                      color: ${applyConfig.capColor};
-                     transform: translate(-50%, -50%);
+                     transform: translate(-50%, -1px);
                      transition: 0.25s linear;
+                     text-align:center;
+                     border-bottom-right-radius:${applyConfig.borderRadius};
+                     border-bottom-left-radius:${applyConfig.borderRadius};
                   }
                      &:hover::after{
                         transition: 0.25s linear;
                         opacity: 1;
                      }
                   `}
+
             >
                <img
                   src={object.img}
                   css={css`
+                     border-radius:${applyConfig.borderRadius};
                      transition: 0.25s linear;
                      width:${applyConfig.imgWidth};
                      height:${applyConfig.imgHeight};
                   `}
                />
-
+               {/* <span
+            style={object.cap === ""
+               ? { display: "none" }
+               : { display: "block" }}
+            css={css`
+               position:absolute;
+               bottom: calc( ${applyConfig.containerHeight} - ${applyConfig.imgHeight});
+            `}
+         >
+            {object.cap}
+         </span> */}
                {/* <h4 css={css`text-align:center; color: ${applyConfig.capColor}`}>{object.cap}</h4> */}
-            </div>
-         ))}
+            </div >
+         ))
+         }
 
          { applyConfig.allowDots ? (<div css={css`display:inline-flex`}>{dots}</div>) : ""}
+
          <div
             className={`chevron-right${applyConfig.chevronStyle}`}
             onClick={() =>
@@ -147,11 +176,12 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
                opacity: 0;
                transition: 0.2s linear;
                color: ${applyConfig.chevronColor};
+               z-index: 1000;
                &:hover{
-                  color: ${applyConfig.chevronHoverColor}
                   transition: 0.15s linear;
                   margin-right: -5px;
                   cursor:pointer;
+                  z-index: 1000;
                }
             `}
          >
@@ -182,7 +212,7 @@ export const SimpleSlides = ({ images, userConfig, children }) => {
             `}
          >
          </div>
-      </div>
+      </div >
    )
 }
 
@@ -198,11 +228,11 @@ SimpleSlides.propTypes = {
       capColor: PropTypes.string,
       chevronStyle: PropTypes.number,
       chevronScale: PropTypes.number,
-      chevronHoverColor: PropTypes.string,
       chevronColor: PropTypes.string,
       capBgColor: PropTypes.string,
       dotHighlightColor: PropTypes.string,
       dotBgColor: PropTypes.string,
       allowDots: PropTypes.bool,
+      borderRadius: PropTypes.string,
    }).isRequired
 }

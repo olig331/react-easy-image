@@ -103,7 +103,7 @@ const  stackConfig  = {
 
 By default clicking on the top image will cycle through the images. Clicking on the final image will reset the stack. [Chevrons](#Chevrons) can enabled with the **allowChevrons** config property being set to true. 
 
-[try on codepen](www.codepen.io) 
+[try on code sandbox](https://codesandbox.io/s/react-easy-image-stack-gu1ko?file=/src/App.js) 
 
 # Tile #
 
@@ -132,7 +132,7 @@ Tile's config options are as follows:
 
 <img width="520" height="590" src="./src/docsImgs/Tile.png">
 
-[try on codepen](www.codepen.io) 
+[try on code sandbox](https://codesandbox.io/s/react-easy-image-tile-rmvzm?file=/src/App.js) 
 
   
 
@@ -155,6 +155,22 @@ const  simpleslidesArray  = [
 	{ img:  require('path-to-your-img.png'), cap:  "3 of dimaonds" },
 	{ img:  require("path-to-your-img.png"), cap: ""}
 ];
+
+// Captions can also be imported manually
+
+import image1 from 'yourpath/image1.png'
+import image2 from 'yourpath/image2.png'
+import image3 from 'yourpath/image3.png'
+import image4 from 'yourpath/image4.png'
+import image5 from 'yourpath/image5.png'
+
+const simpleSlidesArray = [
+      image1, 
+      image2, 
+      image3,
+      image4,
+      image5
+]
 ```
 If no caption is required just pass an empty string.
 
@@ -171,34 +187,37 @@ Simple Slides config options are as follows:
 | containerWidth| string|     __yes__| N/A|
 | containerHeight| string|     __yes__| N/A |
 | maxShadowBlur|    number     |     no  |	64|
-| shadowColor|string|no|"rgba(0,0,0, 0.07)"|
+| shadowColor|string|no|"rgba(0,0,0, 0.09)"|
 | capFontSize| string|     no| "14px" |
-| capColor|    string|     no  |	"whitesmoke"|
-| capBgColor|string|no|"rgba(0,0,0, 0.87)"|
-| [chevronStyle](#chevron-styles)|number|no|1|
+| capColor|    string|     no  |	"#333"|
+| capBgColor|string|no|"rgba(220,220,220, 0.89)"|
+| [chevronStyle](#chevron-styles)|number|no|2|
 | chevronScale|number|no|1|
-| chevronHoverColor|string|no|"black"|
 | chevronColor|string|no|"black"|
 | allowDots|boolean|no|true|
 | dotHighlightColor|string|no|"violet"|
 | dotBgColor|string|no|"#888"|
+| borderRadius|string|no|"5px"|
 
 __Eample__:
 ```
 const  tileConfig  = {
-	width:  "250px",
-	height:  "400px",
-	shadowColor:  "rgba(150, 0, 0, 0.08)",
-	maxShadowBlur:  120,
-	traction:  17,
-	scale:  1.1
+	 containerWidth: "960px",
+      containerHeight: "730px",
+      imgWidth: "960px",
+      imgHeight: "640px",
+      capFontSize: "20px",
+      chevronStyle: 2,
+      chevronScale: 1.6,
+      chevronColor: "whitesmoke",
+      borderRadius: "10px"
 }
 ```
 
 
-<img width="370" height="500" src="./src/docsImgs/SimpleSlide1.PNG"> <img width="370" height="500" src="./src/docsImgs/SimpleSlide2.PNG">
+<img width="732" height="485" src="./src/docsImgs/simpleSlides.PNG"> 
 
-[try on codepen](www.codepen.io) 
+[try on code sandbox](https://codesandbox.io/s/react-easy-image-simple-slides-bob0i?file=/src/App.js)
 
 
 # AnimtedSlides #
@@ -221,6 +240,22 @@ const  simpleslidesArray  = [
 	{ img:  require('path-to-your-img.png'), cap:  "3 of dimaonds" },
 	{ img:  require("path-to-your-img.png"), cap: ""}
 ];
+
+// Images can also be imported normally 
+
+import image1 from 'yourpath/image1.png'
+import image2 from 'yourpath/image2.png'
+import image3 from 'yourpath/image3.png'
+import image4 from 'yourpath/image4.png'
+import image5 from 'yourpath/image5.png'
+
+const animatedSlidesArray = [
+      image1, 
+      image2, 
+      image3,
+      image4,
+      image5
+];
 ```
 If no caption is required just pass an empty string.
 
@@ -239,23 +274,29 @@ AnimatedSlide's config options are as follow:
 | maxShadowBlur|    number|     no  |64|
 | shadowColor|string|no|"rgba(0,0,0, 0.19)"|
 | roateTime|number|no|350 *(in ms)*|
+| roateTime|string|no|"5px"|
+| capColor|string|no|"#333"|
+| capBgColor|string|no|"rgba(220,220,220, 0.89)"|
+| capFontSize|string|no|"14px"|
 
 __Example:__
 ```
 const  aniSlidesConfig  = {
-	containerWidth:  "100%",
-	containerHeight:  "1000px",
 	imgWidth:  "2000ppx",
 	imgHeight:  "1250px",
 	dotBgColor:  "slategray",
 	dotHighlightColor:  "slateblue"
 }
 ```
+Animated Slides container width is set 100% if you want the container width smaller wrap it inside so it takes 100% of its parent. 
 
+Animated Slides images are positioned absolutly and the 3 image elements change position on rotation this is to limit re-renders of the images to only one per rotation. 
 
-<img width="1014" height="394" src="./src/docsImgs/aniSlides.PNG">
+Animted slides is also fully responsive and the images are scaled based on their aspect ratio to fit the viewport size.
 
-[try on codepen](www.codepen.io) 
+<img width="1014" height="394" src="./src/docsImgs/aniSlides1.PNG">
+
+[try on code sandbox](https://codesandbox.io/s/react-easy-image-animated-slides-307kw) 
 
 
 
@@ -263,9 +304,9 @@ const  aniSlidesConfig  = {
 
 | Chevron Style Number | Style |    
 | :---  |    :----:   | 
-| 1     |  <img width="180" height="180" src="./src/docsImgs/chevron1.PNG">
-| 2		| <img width="180" height="180" src="./src/docsImgs/chevron2.PNG">
-| 3		| <img width="180" height="180" src="./src/docsImgs/chevron3.PNG">
-| 4		| <img width="180" height="180" src="./src/docsImgs/chevron4.PNG">
-| 5		| <img width="180" height="180" src="./src/docsImgs/chevron5.PNG">
-| 6		| <img width="180" height="180" src="./src/docsImgs/chevron6.PNG">
+| 1     |  <img width="150" height="150" src="./src/docsImgs/chevron1.PNG">
+| 2		| <img width="150" height="150" src="./src/docsImgs/chevron2.PNG">
+| 3		| <img width="150" height="150" src="./src/docsImgs/chevron3.PNG">
+| 4		| <img width="150" height="150" src="./src/docsImgs/chevron4.PNG">
+| 5		| <img width="150" height="150" src="./src/docsImgs/chevron5.PNG">
+| 6		| <img width="150" height="150" src="./src/docsImgs/chevron6.PNG">
