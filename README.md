@@ -6,6 +6,7 @@
 
 React Easy Image has 4 components to choose from with more to be added in the near future. The components are:
 
+[NPM package](https://www.npmjs.com/package/react-easy-image)
 
 &nbsp; 1. [Stack](#stack)
 
