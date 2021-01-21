@@ -43,7 +43,7 @@ export const Tile = ({ children, userConfig }) => {
          css={css`
                max-height: ${applyConfig.height};
                max-width: ${applyConfig.width};
-               filter: drop-shadow(0 1px 2px ${config.shadowColor}) 
+               filter: drop-shadow(0 1px 2px ${applyConfig.shadowColor}) 
                         drop-shadow(0 2px ${applyConfig.maxShadowBlur / 16}px ${applyConfig.shadowColor}) 
                         drop-shadow(0 4px ${applyConfig.maxShadowBlur / 8}px ${applyConfig.shadowColor})
                         drop-shadow(0 8px ${applyConfig.maxShadowBlur / 4}px ${applyConfig.shadowColor})
@@ -62,7 +62,7 @@ export const Tile = ({ children, userConfig }) => {
                   }
                   &:hover{
                      transition: 0.15s linear;
-                     filter: drop-shadow(0 1px 2px ${config.shadowColor}) 
+                     filter: drop-shadow(0 1px 2px ${applyConfig.shadowColor}) 
                         drop-shadow(0 2px ${applyConfig.maxShadowBlur / 16}px ${applyConfig.shadowColor}) 
                         drop-shadow(0 4px ${applyConfig.maxShadowBlur / 8}px ${applyConfig.shadowColor})
                         drop-shadow(0 8px ${applyConfig.maxShadowBlur / 4}px ${applyConfig.shadowColor})
