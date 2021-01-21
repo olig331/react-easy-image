@@ -1,10 +1,10 @@
 
-# React Easy Img
+# React Easy Image
 
   
-&nbsp;&nbsp; React Easy Img is a React componenet library to assist in creating interactive/responsive good looking images for your webpage.
+&nbsp;&nbsp; React Easy Image is a React componenet library to assist in creating interactive/responsive good looking images for your webpage.
 
-React Easy Img has 4 components to choose from with more to be added in the near future. The components are:
+React Easy Image has 4 components to choose from with more to be added in the near future. The components are:
 
 
 &nbsp; 1. [Stack](#stack)
