@@ -68,26 +68,26 @@ The **Stack** Component must be passed 2 properties:
 
 &nbsp;&nbsp; Images can be an array of required images via webpack or simply and array of imported images
 
-```
-const  importAll = (r) => {
-	return  r.keys().map(r);
-};
+```js
+const importAll = (r) => {
+   return r.keys().map(r)
+}
 
 let stackImages = importAll(
-	require.context("path-to-imgs-folder", true, /\.(png|jpe?g|svg)$/)
-);
+   require.context('path-to-imgs-folder', true, /\.(png|jpe?g|svg)$/)
+)
 ```
 
 or
 
-```
-const stackImages  = [
-	require('./imgs/stackImgs/image1.jpg'),
-	require('./imgs/stackImgs/image2.jpg'),
-	require('./imgs/stackImgs/image3.jpg'),
-	require('./imgs/stackImgs/image4.jpg'),
-	require('./imgs/stackImgs/image5.jpg')
-];
+```js
+const stackImages = [
+   require('./imgs/stackImgs/image1.jpg'),
+   require('./imgs/stackImgs/image2.jpg'),
+   require('./imgs/stackImgs/image3.jpg'),
+   require('./imgs/stackImgs/image4.jpg'),
+   require('./imgs/stackImgs/image5.jpg'),
+]
 ```
 
 ### <ins>Config </ins>
@@ -114,17 +114,17 @@ if no conatinerHeight and containerWidth values are passed they will be calclate
 
 **Eample**:
 
-```
-const  stackConfig  = {
-	imgWidth:  "250px",
-	imgHeight:  "400px",
-	containerWidth:  "470px",
-	containerHeight:  "600px",
-	dotBgColor:  "#888",
-	dotHighlightColor:  "violet",
-	shadowColor:  "rgba(100, 100, 100, 0.05)",
-	allowDots:  false,
-	allowChevrons:  false
+```js
+const stackConfig = {
+   imgWidth: '250px',
+   imgHeight: '400px',
+   containerWidth: '470px',
+   containerHeight: '600px',
+   dotBgColor: '#888',
+   dotHighlightColor: 'violet',
+   shadowColor: 'rgba(100, 100, 100, 0.05)',
+   allowDots: false,
+   allowChevrons: false,
 }
 ```
 
@@ -140,9 +140,9 @@ For the Tile component it is imperative you only wrap a single element that elem
 
 E.G <br/>
 
-```
+```js
 <Tile userConfig={yourConfigSettings}>
-    <img src={yourImg} alt="" />
+   <img src={yourImg} alt="" />
 </Tile>
 ```
 
@@ -177,13 +177,13 @@ the **SimpleSlides** Component must be passed 2 properties:
 
 Due to having the option to have captions for these images the import method must differ slightly to that of _Stack_ The images passed as a prop to **SimpleSlides** must be an **Array of objects** with the following key value pairs:
 
-```
-const  simpleslidesArray  = [
-	{ img:  require("path-to-your-img.png"), cap:  "Image 1 Caption" },
-	{ img:  require("path-to-your-img.png"), cap:  "Image 1 Caption" },
-	{ img:  require('path-to-your-img.png'), cap:  "Image 1 Caption" },
-	{ img:  require("path-to-your-img.png"), cap: ""}
-];
+```js
+const simpleslidesArray = [
+   { img: require('path-to-your-img.png'), cap: 'Image 1 Caption' },
+   { img: require('path-to-your-img.png'), cap: 'Image 1 Caption' },
+   { img: require('path-to-your-img.png'), cap: 'Image 1 Caption' },
+   { img: require('path-to-your-img.png'), cap: '' },
+]
 
 // Images can also be imported manually
 
@@ -193,13 +193,7 @@ import image3 from 'yourpath/image3.png'
 import image4 from 'yourpath/image4.png'
 import image5 from 'yourpath/image5.png'
 
-const simpleSlidesArray = [
-      image1,
-      image2,
-      image3,
-      image4,
-      image5
-]
+const simpleSlidesArray = [image1, image2, image3, image4, image5]
 ```
 
 If no caption is required just pass an empty string.
@@ -231,17 +225,17 @@ Simple Slides config options are as follows:
 
 **Eample**:
 
-```
-const  tileConfig  = {
-	 containerWidth: "960px",
-      containerHeight: "730px",
-      imgWidth: "960px",
-      imgHeight: "640px",
-      capFontSize: "20px",
-      chevronStyle: 2,
-      chevronScale: 1.6,
-      chevronColor: "whitesmoke",
-      borderRadius: "10px"
+```js
+const tileConfig = {
+   containerWidth: '960px',
+   containerHeight: '730px',
+   imgWidth: '960px',
+   imgHeight: '640px',
+   capFontSize: '20px',
+   chevronStyle: 2,
+   chevronScale: 1.6,
+   chevronColor: 'whitesmoke',
+   borderRadius: '10px',
 }
 ```
 
@@ -263,13 +257,13 @@ the **AnimatedSlides** Component must be passed 2 properties:
 
 Due to having the option to have captions for these images the import method must differ slightly to that of _Stack_ The images passed as a prop to **SimpleSlides** must be an **Array of objects** with the following key value pairs:
 
-```
-const  animatedSlidesArray  = [
-	{ img:  require("path-to-your-img.png"), cap:  "Image 1 Caption" },
-	{ img:  require("path-to-your-img.png"), cap:  "Image 2 Caption" },
-	{ img:  require('path-to-your-img.png'), cap:  "Image 3 Caption" },
-	{ img:  require("path-to-your-img.png"), cap:  "Image 4 Caption"}
-];
+```js
+const animatedSlidesArray = [
+   { img: require('path-to-your-img.png'), cap: 'Image 1 Caption' },
+   { img: require('path-to-your-img.png'), cap: 'Image 2 Caption' },
+   { img: require('path-to-your-img.png'), cap: 'Image 3 Caption' },
+   { img: require('path-to-your-img.png'), cap: 'Image 4 Caption' },
+]
 
 // Images can also be imported normally
 
@@ -280,12 +274,12 @@ import image4 from 'yourpath/image4.png'
 import image5 from 'yourpath/image5.png'
 
 const animatedSlidesArray = [
-   {img: image1, cap: "image 1 caption"},
-   {img: image2, cap: "image 2 caption"},
-   {img: image3, cap: "image 3 caption"},
-   {img: image4, cap: "image 4 caption"},
-   {img: image5, cap: "image 5 caption"}
-];
+   { img: image1, cap: 'image 1 caption' },
+   { img: image2, cap: 'image 2 caption' },
+   { img: image3, cap: 'image 3 caption' },
+   { img: image4, cap: 'image 4 caption' },
+   { img: image5, cap: 'image 5 caption' },
+]
 ```
 
 If no caption is required just pass an empty string.
@@ -311,12 +305,12 @@ AnimatedSlide's config options are as follow:
 
 **Example:**
 
-```
-const  aniSlidesConfig  = {
-	imgWidth:  "2000ppx",
-	imgHeight:  "1250px",
-	dotBgColor:  "slategray",
-	dotHighlightColor:  "slateblue"
+```js
+const aniSlidesConfig = {
+   imgWidth: '2000ppx',
+   imgHeight: '1250px',
+   dotBgColor: 'slategray',
+   dotHighlightColor: 'slateblue',
 }
 ```
 
