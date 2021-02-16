@@ -38,7 +38,7 @@ import card from './10h.png'
 
 const App = () => {
    return (
-      <div>
+      <>
          <Stack images={YOUR_IMAGES} userConfig={YOUR_CONFIG} />
 
          <Tile userConfig={YOUR_CONFIG}>
@@ -48,7 +48,7 @@ const App = () => {
          <SimpleSlides images={YOUR_IMAGES} userConfig={YOUR_CONFIG} />
 
          <AnimatedSlides images={YOUR_IMAGES} userConfig={YOUR_CONFIG} />
-      </div>
+      </>
    )
 }
 
